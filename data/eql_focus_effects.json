@@ -2228,25 +2228,6 @@
       ]
     },
     {
-      "name": "Cryosilk Cap",
-      "slug": "Cryosilk_Cap",
-      "url": "https://eqlwiki.com/Cryosilk_Cap",
-      "slot": "HEAD",
-      "classes": [
-        "NEC",
-        "WIZ",
-        "MAG",
-        "ENC"
-      ],
-      "source": "eqlwiki",
-      "effects": [
-        {
-          "type": "focus",
-          "name": "Burning Affliction III"
-        }
-      ]
-    },
-    {
       "name": "Mistmoore Heirloom Ring",
       "slug": "Mistmoore_Heirloom_Ring",
       "url": "https://eqlwiki.com/Mistmoore_Heirloom_Ring",
