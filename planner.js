@@ -273,6 +273,7 @@
         const procs = chosen_names.filter(is_proc_augment);
         const names = [];
         const candidates = [];
+        const noChoice = [];
         const slot_index = {};
         const item_bucket = {};
         const sorted_chosen = chosen_names.slice().sort(function (a, b) {
@@ -282,6 +283,10 @@
             if (cA > cB) return 1;
             return a < b ? -1 : a > b ? 1 : 0;
         });
+        function overlap(a, b) {
+            for (const c of a) { if (b.has(c)) return true; }
+            return false;
+        }
         sorted_chosen.forEach(function (name) {
             if (is_proc_augment(name)) return;
             const e = effects[name] || {};
@@ -294,6 +299,7 @@
                     _slot_bits(region).forEach(function (bit) {
                         const allowed = classes_in(bit);
                         if (allowed.size === 0) return;
+                        if (!is_all(s.classes) && !overlap(allowed, cls)) return;
                         const excluded = is_all(s.classes) ? 0 :
                             countMissing(allowed, cls);
                         choices.push([bit, s.item, excluded]);
@@ -308,6 +314,7 @@
                     const any_base = any_meta[i][0];
                     const any_allowed = any_meta[i][1];
                     if (_plan_regions(bucket).indexOf(any_base) < 0) continue;
+                    if (!is_all(s.classes) && !overlap(any_allowed, cls)) continue;
                     const excluded = is_all(s.classes) ? 0 :
                         countMissing(any_allowed, cls);
                     choices.push([any_name, s.item, excluded]);
@@ -317,7 +324,10 @@
                     }
                 }
             });
-            if (choices.length === 0) return;
+            if (choices.length === 0) {
+                noChoice.push(name);
+                return;
+            }
             names.push(name);
             candidates.push(choices);
         });
@@ -579,10 +589,10 @@
             why_here[p[0]] = details;
         });
         const stats = {
-            total: names.length,
+            total: names.length + noChoice.length,
             placed: plan.length,
             restricted: plan.filter((p) => p[4]).length,
-            conflicts: names.filter((n) => !placed.has(n)),
+            conflicts: noChoice.concat(names.filter((n) => !placed.has(n))),
             clashes: clashes,
             why_here: why_here,
             procs: procs,

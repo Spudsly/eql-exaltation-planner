@@ -110,6 +110,42 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
     check(!hasSecondary,
         "no focus placed in SECONDARY after disabling it");
 
+    // regression: gear restriction must remove an effect it renders unwearable
+    // AND report it as not placed (WIZ/ENC/SHD, EE III is SECONDARY-only)
+    sel("#trio0", "Wizard");
+    sel("#trio1", "Enchanter");
+    sel("#trio2", "Shadow Knight");
+    $("#loadBtn").click();
+    function clickEffect(name) {
+        const rows = Array.from(doc.querySelectorAll(".effect-row")).filter((r) =>
+            r.querySelector(".effect-name").textContent === name);
+        if (rows.length) rows[0].click();
+    }
+    function superCard(name) {
+        return Array.from(doc.querySelectorAll(".super-card")).find((c) =>
+            c.querySelector(".super-name").textContent === name);
+    }
+    clickEffect("Improved Damage III");
+    Array.from(superCard("Healing & Mitigation").querySelectorAll(".effect-row"))
+        .slice(0, 3).forEach((r) => r.click());
+    Array.from(superCard("Buffs & Utility").querySelectorAll(".effect-row"))
+        .forEach((r) => r.click());
+    clickEffect("Improved Vampirism III");
+    check(planText().indexOf("9/9 foci placed") >= 0,
+        "WIZ/ENC/SHD all 9 placed before gear restriction");
+    const secRow = Array.from(doc.querySelectorAll(".gear-row")).find((r) =>
+        r.querySelector(".gear-name").textContent === "SECONDARY");
+    Array.from(secRow.querySelectorAll("input")).forEach((cb) => {
+        if (["ENC", "WIZ"].indexOf(cb.nextSibling.textContent.trim()) >= 0) {
+            cb.checked = false;
+            cb.dispatchEvent(new window.Event("change"));
+        }
+    });
+    check(planText().indexOf("8/9 foci placed") >= 0 &&
+        planText().indexOf("SECONDARY <-") < 0 &&
+        planText().indexOf("Could not fit: Extended Enhancement III") >= 0,
+        "gear restriction drops SECONDARY-only focus and reports it not placed");
+
     console.log("\nALL WEB UI CHECKS PASSED (" + passed + " assertions)");
     window.close();
 }).catch((err) => {
