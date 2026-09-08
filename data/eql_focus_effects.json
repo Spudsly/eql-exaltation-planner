@@ -1848,24 +1848,6 @@
       ]
     },
     {
-      "name": "Smoldering Robe",
-      "slug": "smoldering-robe",
-      "url": "https://eqlegendstools.com/items/smoldering-robe/",
-      "slot": "CHEST",
-      "classes": [
-        "NEC",
-        "WIZ",
-        "MAG",
-        "ENC"
-      ],
-      "effects": [
-        {
-          "type": "focus",
-          "name": "Minor Improved Damage I"
-        }
-      ]
-    },
-    {
       "name": "Spiked Buckler",
       "slug": "spiked-buckler",
       "url": "https://eqlegendstools.com/items/spiked-buckler/",
@@ -2265,28 +2247,6 @@
       ]
     },
     {
-      "name": "Grotesque Girdle",
-      "slug": "Grotesque_Girdle",
-      "url": "https://eqlwiki.com/Grotesque_Girdle",
-      "slot": "WAIST",
-      "classes": [
-        "CLR",
-        "DRU",
-        "SHM",
-        "NEC",
-        "WIZ",
-        "MAG",
-        "ENC"
-      ],
-      "source": "eqlwiki",
-      "effects": [
-        {
-          "type": "focus",
-          "name": "Reanimation Haste III"
-        }
-      ]
-    },
-    {
       "name": "Mistmoore Heirloom Ring",
       "slug": "Mistmoore_Heirloom_Ring",
       "url": "https://eqlwiki.com/Mistmoore_Heirloom_Ring",
@@ -2411,7 +2371,6 @@
       "tier": "III",
       "description": "Increase Spell Damage by 20% (Instant Direct Damage Spells Only). Limit: Max Level (60).",
       "items": [
-        "Jungle Spider Fur Cap",
         "White Dragonscale Cloak"
       ]
     },
@@ -2541,9 +2500,7 @@
       "category": "Reanimation Haste",
       "tier": "III",
       "description": "Increase Spell Haste by 30% (Summon Skeleton Pets Only). Limit: Max Level (60).",
-      "items": [
-        "Grotesque Girdle"
-      ]
+      "items": []
     },
     "Affliction Efficiency I": {
       "category": "Affliction Efficiency",

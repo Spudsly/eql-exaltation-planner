@@ -54,10 +54,10 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
         "load effects status");
     check(doc.querySelectorAll(".super-card").length >= 3, "super cards rendered");
 
-    // check all -> plan auto-fills; CLR/DRU/SHM full set = 13/16 like desktop
+    // check all -> plan auto-fills; CLR/DRU/SHM full set = 14/16 like desktop
     $("#checkAllBtn").click();
-    check(planText().indexOf("13/16 foci placed") >= 0,
-        "best path auto plan 13/16 for CLR/DRU/SHM");
+    check(planText().indexOf("14/16 foci placed") >= 0,
+        "best path auto plan 14/16 for CLR/DRU/SHM");
     check($("#planTitle").textContent === "Best path \u00b7 CLR / DRU / SHM",
         "plan title shows trio");
 
@@ -67,8 +67,8 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
     const anySel = anyRow.querySelector("select");
     anySel.value = "LEFT RING";
     anySel.dispatchEvent(new window.Event("change"));
-    check(planText().indexOf("14/16 foci placed") >= 0,
-        "any socket adds a slot (13/16 -> 14/16)");
+    check(planText().indexOf("15/16 foci placed") >= 0,
+        "any socket adds a slot (14/16 -> 15/16)");
 
     const anyUnpick = anyRow.querySelector("select");
     anyUnpick.value = "\u2014 choose slot \u2014";
@@ -89,14 +89,14 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
     shamanCb.dispatchEvent(new window.Event("change"));
     check(planText().indexOf("foci placed") >= 0, "plan renders after gear change");
 
-    // reload for SHM/WAR/MNK: disabling SECONDARY keeps 13/16, no SECONDARY slot
+    // reload for SHM/WAR/MNK: disabling SECONDARY keeps 14/16, no SECONDARY slot
     sel("#trio0", "Shaman");
     sel("#trio1", "Warrior");
     sel("#trio2", "Monk");
     $("#loadBtn").click();
     $("#checkAllBtn").click();
-    check(planText().indexOf("13/16 foci placed") >= 0,
-        "best path auto plan 13/16 for SHM/WAR/MNK");
+    check(planText().indexOf("14/16 foci placed") >= 0,
+        "best path auto plan 14/16 for SHM/WAR/MNK");
     const secondary = Array.from(doc.querySelectorAll(".gear-row")).find((r) =>
         r.querySelector(".gear-name").textContent === "SECONDARY");
     Array.from(secondary.querySelectorAll("input")).forEach((cb) => {
