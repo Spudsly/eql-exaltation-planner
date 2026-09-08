@@ -1,0 +1,2746 @@
+{
+  "generated_at": "2026-09-08T00:44:14+00:00",
+  "sources": {
+    "eqlegendstools_item_index": "https://eqlegendstools.com/items/focus-effects/",
+    "eqlref_focus_appendix": "https://eqlref.com/appendix/focus-effects",
+    "wiki_supplement": "wiki_supplement.json"
+  },
+  "items": [
+    {
+      "name": "A Shimmering Orb",
+      "slug": "a-shimmering-orb",
+      "url": "https://eqlegendstools.com/items/a-shimmering-orb/",
+      "slot": "SECONDARY",
+      "classes": [
+        "BRD",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Adamantite Band",
+      "slug": "adamantite-band",
+      "url": "https://eqlegendstools.com/items/adamantite-band/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Agilmente's Flute of Flight",
+      "slug": "agilmentes-flute-of-flight",
+      "url": "https://eqlegendstools.com/items/agilmentes-flute-of-flight/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 12"
+        }
+      ]
+    },
+    {
+      "name": "Allize Volew Medicine Bag",
+      "slug": "allize-volew-medicine-bag",
+      "url": "https://eqlegendstools.com/items/allize-volew-medicine-bag/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction I"
+        }
+      ]
+    },
+    {
+      "name": "Amethyst Bracelet",
+      "slug": "amethyst-bracelet",
+      "url": "https://eqlegendstools.com/items/amethyst-bracelet/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation II"
+        }
+      ]
+    },
+    {
+      "name": "An Elven Charm Necklace",
+      "slug": "an-elven-charm-necklace",
+      "url": "https://eqlegendstools.com/items/an-elven-charm-necklace/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Range I"
+        }
+      ]
+    },
+    {
+      "name": "Aviak Charm",
+      "slug": "aviak-charm",
+      "url": "https://eqlegendstools.com/items/aviak-charm/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction I"
+        }
+      ]
+    },
+    {
+      "name": "Azure Sleeves",
+      "slug": "azure-sleeves",
+      "url": "https://eqlegendstools.com/items/azure-sleeves/",
+      "slot": "ARMS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage I"
+        }
+      ]
+    },
+    {
+      "name": "Band of Flesh",
+      "slug": "band-of-flesh",
+      "url": "https://eqlegendstools.com/items/band-of-flesh/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Batfang Headband",
+      "slug": "batfang-headband",
+      "url": "https://eqlegendstools.com/items/batfang-headband/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement II"
+        }
+      ]
+    },
+    {
+      "name": "Batskull Earring",
+      "slug": "batskull-earring",
+      "url": "https://eqlegendstools.com/items/batskull-earring/",
+      "slot": "EAR",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation I"
+        }
+      ]
+    },
+    {
+      "name": "Beaded Slime Necklace",
+      "slug": "beaded-slime-necklace",
+      "url": "https://eqlegendstools.com/items/beaded-slime-necklace/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Bear-hide Boots",
+      "slug": "bear-hide-boots",
+      "url": "https://eqlegendstools.com/items/bear-hide-boots/",
+      "slot": "FEET",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement I"
+        }
+      ]
+    },
+    {
+      "name": "Black Alloy Medallion",
+      "slug": "black-alloy-medallion",
+      "url": "https://eqlegendstools.com/items/black-alloy-medallion/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation II"
+        }
+      ]
+    },
+    {
+      "name": "Black Tome with Silver Runes",
+      "slug": "black-tome-with-silver-runes",
+      "url": "https://eqlegendstools.com/items/black-tome-with-silver-runes/",
+      "slot": "PRIMARY",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction II"
+        }
+      ]
+    },
+    {
+      "name": "Bloodmoon",
+      "slug": "bloodmoon",
+      "url": "https://eqlegendstools.com/items/bloodmoon/",
+      "slot": "PRIMARY",
+      "classes": [
+        "SHD"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Vampirism III"
+        }
+      ]
+    },
+    {
+      "name": "Bone-Clasped Girdle",
+      "slug": "bone-clasped-girdle",
+      "url": "https://eqlegendstools.com/items/bone-clasped-girdle/",
+      "slot": "WAIST",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction III"
+        }
+      ]
+    },
+    {
+      "name": "Bracelet of Woven Grass",
+      "slug": "bracelet-of-woven-grass",
+      "url": "https://eqlegendstools.com/items/bracelet-of-woven-grass/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Brahhms Horn",
+      "slug": "brahhms-horn",
+      "url": "https://eqlegendstools.com/items/brahhms-horn/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 11"
+        }
+      ]
+    },
+    {
+      "name": "Braided Ivy Cords",
+      "slug": "braided-ivy-cords",
+      "url": "https://eqlegendstools.com/items/braided-ivy-cords/",
+      "slot": "SHOULDERS",
+      "classes": [
+        "DRU",
+        "BRD",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Brell's Girdle",
+      "slug": "brells-girdle",
+      "url": "https://eqlegendstools.com/items/brells-girdle/",
+      "slot": "WAIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Haste III"
+        }
+      ]
+    },
+    {
+      "name": "Broken Minotaur Lord's Horn",
+      "slug": "broken-minotaur-lords-horn",
+      "url": "https://eqlegendstools.com/items/broken-minotaur-lords-horn/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 8"
+        }
+      ]
+    },
+    {
+      "name": "Broom of Trilon",
+      "slug": "broom-of-trilon",
+      "url": "https://eqlegendstools.com/items/broom-of-trilon/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Minion of Air"
+        }
+      ]
+    },
+    {
+      "name": "Burrowing Goggles",
+      "slug": "burrowing-goggles",
+      "url": "https://eqlegendstools.com/items/burrowing-goggles/",
+      "slot": "FACE",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction I"
+        }
+      ]
+    },
+    {
+      "name": "Cape of Midnight Mist",
+      "slug": "cape-of-midnight-mist",
+      "url": "https://eqlegendstools.com/items/cape-of-midnight-mist/",
+      "slot": "NECK",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Carved Ivory Mask",
+      "slug": "carved-ivory-mask",
+      "url": "https://eqlegendstools.com/items/carved-ivory-mask/",
+      "slot": "FACE",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Cat Skull Cap",
+      "slug": "cat-skull-cap",
+      "url": "https://eqlegendstools.com/items/cat-skull-cap/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Chestplate of the Constant",
+      "slug": "chestplate-of-the-constant",
+      "url": "https://eqlegendstools.com/items/chestplate-of-the-constant/",
+      "slot": "CHEST",
+      "classes": [
+        "CLR"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement II"
+        }
+      ]
+    },
+    {
+      "name": "Chipped Bone Bracelet",
+      "slug": "chipped-bone-bracelet",
+      "url": "https://eqlegendstools.com/items/chipped-bone-bracelet/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Chrysoberyl Talisman",
+      "slug": "chrysoberyl-talisman",
+      "url": "https://eqlegendstools.com/items/chrysoberyl-talisman/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Clawed Knuckle-Ring",
+      "slug": "clawed-knuckle-ring",
+      "url": "https://eqlegendstools.com/items/clawed-knuckle-ring/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement II"
+        }
+      ]
+    },
+    {
+      "name": "Crown of Leaves",
+      "slug": "crown-of-leaves",
+      "url": "https://eqlegendstools.com/items/crown-of-leaves/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation II"
+        }
+      ]
+    },
+    {
+      "name": "Crude Wooden Flute",
+      "slug": "crude-wooden-flute",
+      "url": "https://eqlegendstools.com/items/crude-wooden-flute/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 8"
+        }
+      ]
+    },
+    {
+      "name": "Cryosilk Sash",
+      "slug": "cryosilk-sash",
+      "url": "https://eqlegendstools.com/items/cryosilk-sash/",
+      "slot": "WAIST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Range III"
+        }
+      ]
+    },
+    {
+      "name": "Damask Robe",
+      "slug": "damask-robe",
+      "url": "https://eqlegendstools.com/items/damask-robe/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement I"
+        }
+      ]
+    },
+    {
+      "name": "Dark Circlet",
+      "slug": "dark-circlet",
+      "url": "https://eqlegendstools.com/items/dark-circlet/",
+      "slot": "HEAD",
+      "classes": [
+        "NEC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Denon's Horn of Disaster",
+      "slug": "denons-horn-of-disaster",
+      "url": "https://eqlegendstools.com/items/denons-horn-of-disaster/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Brass Resonance: 15"
+        }
+      ]
+    },
+    {
+      "name": "Diamondine Earring",
+      "slug": "diamondine-earring",
+      "url": "https://eqlegendstools.com/items/diamondine-earring/",
+      "slot": "EAR",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Djarns Amethyst Ring",
+      "slug": "djarns-amethyst-ring",
+      "url": "https://eqlegendstools.com/items/djarns-amethyst-ring/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Drake-hide Leggings",
+      "slug": "drake-hide-leggings",
+      "url": "https://eqlegendstools.com/items/drake-hide-leggings/",
+      "slot": "LEGS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation I"
+        }
+      ]
+    },
+    {
+      "name": "Drake-hide Sleeves",
+      "slug": "drake-hide-sleeves",
+      "url": "https://eqlegendstools.com/items/drake-hide-sleeves/",
+      "slot": "ARMS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Range I"
+        }
+      ]
+    },
+    {
+      "name": "Drakescale Belt",
+      "slug": "drakescale-belt",
+      "url": "https://eqlegendstools.com/items/drakescale-belt/",
+      "slot": "WAIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement II"
+        }
+      ]
+    },
+    {
+      "name": "Dusty Bloodstained Gloves",
+      "slug": "dusty-bloodstained-gloves",
+      "url": "https://eqlegendstools.com/items/dusty-bloodstained-gloves/",
+      "slot": "HANDS",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Efreeti War Horn",
+      "slug": "efreeti-war-horn",
+      "url": "https://eqlegendstools.com/items/efreeti-war-horn/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Brass Resonance: 12"
+        }
+      ]
+    },
+    {
+      "name": "Embroidered Black Sleeves",
+      "slug": "embroidered-black-sleeves",
+      "url": "https://eqlegendstools.com/items/embroidered-black-sleeves/",
+      "slot": "ARMS",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Emissary Mask",
+      "slug": "emissary-mask",
+      "url": "https://eqlegendstools.com/items/emissary-mask/",
+      "slot": "FACE",
+      "classes": [
+        "WAR",
+        "CLR",
+        "PAL",
+        "SHD",
+        "BRD"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Healing I"
+        }
+      ]
+    },
+    {
+      "name": "Encyclopedia Necrotheurgia",
+      "slug": "encyclopedia-necrotheurgia",
+      "url": "https://eqlegendstools.com/items/encyclopedia-necrotheurgia/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "NEC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Minion of Hate"
+        }
+      ]
+    },
+    {
+      "name": "Ervaj's Flute of Flight",
+      "slug": "ervajs-flute-of-flight",
+      "url": "https://eqlegendstools.com/items/ervajs-flute-of-flight/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 12"
+        }
+      ]
+    },
+    {
+      "name": "Etched Iron Helm",
+      "slug": "etched-iron-helm",
+      "url": "https://eqlegendstools.com/items/etched-iron-helm/",
+      "slot": "HEAD",
+      "classes": [
+        "WAR",
+        "CLR",
+        "PAL",
+        "SHD",
+        "BRD"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Fine Silk Turban",
+      "slug": "fine-silk-turban",
+      "url": "https://eqlegendstools.com/items/fine-silk-turban/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation II"
+        }
+      ]
+    },
+    {
+      "name": "Flowing Black Robe",
+      "slug": "flowing-black-robe",
+      "url": "https://eqlegendstools.com/items/flowing-black-robe/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Gatorscale Sleeves",
+      "slug": "gatorscale-sleeves",
+      "url": "https://eqlegendstools.com/items/gatorscale-sleeves/",
+      "slot": "ARMS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Gilded Cloth",
+      "slug": "gilded-cloth",
+      "url": "https://eqlegendstools.com/items/gilded-cloth/",
+      "slot": "SHOULDERS",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Glowing Bone Collar",
+      "slug": "glowing-bone-collar",
+      "url": "https://eqlegendstools.com/items/glowing-bone-collar/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Range I"
+        }
+      ]
+    },
+    {
+      "name": "Gnoll Hide Tome",
+      "slug": "gnoll-hide-tome",
+      "url": "https://eqlegendstools.com/items/gnoll-hide-tome/",
+      "slot": "PRIMARY",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Golden Ear Stud",
+      "slug": "golden-ear-stud",
+      "url": "https://eqlegendstools.com/items/golden-ear-stud/",
+      "slot": "EAR",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction I"
+        }
+      ]
+    },
+    {
+      "name": "Golden Efreeti Boots",
+      "slug": "golden-efreeti-boots",
+      "url": "https://eqlegendstools.com/items/golden-efreeti-boots/",
+      "slot": "FEET",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Gossamer Robe",
+      "slug": "gossamer-robe",
+      "url": "https://eqlegendstools.com/items/gossamer-robe/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Granite Bracer",
+      "slug": "granite-bracer",
+      "url": "https://eqlegendstools.com/items/granite-bracer/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Green Silken Drape",
+      "slug": "green-silken-drape",
+      "url": "https://eqlegendstools.com/items/green-silken-drape/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Gypsy Lute",
+      "slug": "gypsy-lute",
+      "url": "https://eqlegendstools.com/items/gypsy-lute/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "String Resonance: 11"
+        }
+      ]
+    },
+    {
+      "name": "Hand Drum",
+      "slug": "hand-drum",
+      "url": "https://eqlegendstools.com/items/hand-drum/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Percussion Resonance: 8"
+        }
+      ]
+    },
+    {
+      "name": "Happy Love Bracers",
+      "slug": "happy-love-bracers",
+      "url": "https://eqlegendstools.com/items/happy-love-bracers/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation I"
+        }
+      ]
+    },
+    {
+      "name": "Hollowed Bone Bracers",
+      "slug": "hollowed-bone-bracers",
+      "url": "https://eqlegendstools.com/items/hollowed-bone-bracers/",
+      "slot": "ARMS",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction I"
+        }
+      ]
+    },
+    {
+      "name": "Horn",
+      "slug": "horn",
+      "url": "https://eqlegendstools.com/items/horn/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Brass Resonance: 10"
+        }
+      ]
+    },
+    {
+      "name": "Idol of the Underking",
+      "slug": "idol-of-the-underking",
+      "url": "https://eqlegendstools.com/items/idol-of-the-underking/",
+      "slot": "RANGE PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Healing III"
+        }
+      ]
+    },
+    {
+      "name": "Ill-Fitting Robes",
+      "slug": "ill-fitting-robes",
+      "url": "https://eqlegendstools.com/items/ill-fitting-robes/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Impskin Gloves",
+      "slug": "impskin-gloves",
+      "url": "https://eqlegendstools.com/items/impskin-gloves/",
+      "slot": "HANDS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Incandescent Mask",
+      "slug": "incandescent-mask",
+      "url": "https://eqlegendstools.com/items/incandescent-mask/",
+      "slot": "FACE",
+      "classes": [
+        "MNK",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Ishva Mas Leggings",
+      "slug": "ishva-mas-leggings",
+      "url": "https://eqlegendstools.com/items/ishva-mas-leggings/",
+      "slot": "LEGS",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Ivory Bracelet",
+      "slug": "ivory-bracelet",
+      "url": "https://eqlegendstools.com/items/ivory-bracelet/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Kelin`s Seven Stringed Lute",
+      "slug": "kelin-s-seven-stringed-lute",
+      "url": "https://eqlegendstools.com/items/kelin-s-seven-stringed-lute/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "String Resonance: 14"
+        }
+      ]
+    },
+    {
+      "name": "Kobold-Hide Boots",
+      "slug": "kobold-hide-boots",
+      "url": "https://eqlegendstools.com/items/kobold-hide-boots/",
+      "slot": "FEET",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction II"
+        }
+      ]
+    },
+    {
+      "name": "Lizardskin Tribal Mask",
+      "slug": "lizardskin-tribal-mask",
+      "url": "https://eqlegendstools.com/items/lizardskin-tribal-mask/",
+      "slot": "FACE",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Lockjaw Hide Vest",
+      "slug": "lockjaw-hide-vest",
+      "url": "https://eqlegendstools.com/items/lockjaw-hide-vest/",
+      "slot": "CHEST",
+      "classes": [
+        "ALL",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement I"
+        }
+      ]
+    },
+    {
+      "name": "Lupine Claw Gauntlets",
+      "slug": "lupine-claw-gauntlets",
+      "url": "https://eqlegendstools.com/items/lupine-claw-gauntlets/",
+      "slot": "HANDS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage I"
+        }
+      ]
+    },
+    {
+      "name": "Lute",
+      "slug": "lute",
+      "url": "https://eqlegendstools.com/items/lute/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "String Resonance: 10"
+        }
+      ]
+    },
+    {
+      "name": "Lute of the Gypsy Princess",
+      "slug": "lute-of-the-gypsy-princess",
+      "url": "https://eqlegendstools.com/items/lute-of-the-gypsy-princess/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "String Resonance: 11"
+        }
+      ]
+    },
+    {
+      "name": "Lyssa`s Darkwood Piccolo",
+      "slug": "lyssa-s-darkwood-piccolo",
+      "url": "https://eqlegendstools.com/items/lyssa-s-darkwood-piccolo/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 14"
+        }
+      ]
+    },
+    {
+      "name": "Mammoth Hide Cloak",
+      "slug": "mammoth-hide-cloak",
+      "url": "https://eqlegendstools.com/items/mammoth-hide-cloak/",
+      "slot": "BACK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage I"
+        }
+      ]
+    },
+    {
+      "name": "Mandolin",
+      "slug": "mandolin",
+      "url": "https://eqlegendstools.com/items/mandolin/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "String Resonance: 10"
+        }
+      ]
+    },
+    {
+      "name": "Mane Attraction",
+      "slug": "mane-attraction",
+      "url": "https://eqlegendstools.com/items/mane-attraction/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation II"
+        }
+      ]
+    },
+    {
+      "name": "McVaxius` Horn of War",
+      "slug": "mcvaxius-horn-of-war",
+      "url": "https://eqlegendstools.com/items/mcvaxius-horn-of-war/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Brass Resonance: 14"
+        }
+      ]
+    },
+    {
+      "name": "Minotaur Horn",
+      "slug": "minotaur-horn",
+      "url": "https://eqlegendstools.com/items/minotaur-horn/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 10"
+        }
+      ]
+    },
+    {
+      "name": "Mistmoore Battle Drums",
+      "slug": "mistmoore-battle-drums",
+      "url": "https://eqlegendstools.com/items/mistmoore-battle-drums/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Percussion Resonance: 11"
+        }
+      ]
+    },
+    {
+      "name": "Mithril-Runed Tunic",
+      "slug": "mithril-runed-tunic",
+      "url": "https://eqlegendstools.com/items/mithril-runed-tunic/",
+      "slot": "CHEST",
+      "classes": [
+        "ALL",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Moonstone Ring",
+      "slug": "moonstone-ring",
+      "url": "https://eqlegendstools.com/items/moonstone-ring/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Range II"
+        }
+      ]
+    },
+    {
+      "name": "Nightshade Wreath",
+      "slug": "nightshade-wreath",
+      "url": "https://eqlegendstools.com/items/nightshade-wreath/",
+      "slot": "HEAD",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Nisch Mas Ilkvel",
+      "slug": "nisch-mas-ilkvel",
+      "url": "https://eqlegendstools.com/items/nisch-mas-ilkvel/",
+      "slot": "SECONDARY",
+      "classes": [
+        "CLR",
+        "DRU",
+        "SHM"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation II"
+        }
+      ]
+    },
+    {
+      "name": "Platinum Armband",
+      "slug": "platinum-armband",
+      "url": "https://eqlegendstools.com/items/platinum-armband/",
+      "slot": "ARMS",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation I"
+        }
+      ]
+    },
+    {
+      "name": "Platinum Skull Ring",
+      "slug": "platinum-skull-ring",
+      "url": "https://eqlegendstools.com/items/platinum-skull-ring/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Platinum Tiara",
+      "slug": "platinum-tiara",
+      "url": "https://eqlegendstools.com/items/platinum-tiara/",
+      "slot": "HEAD",
+      "classes": [
+        "CLR",
+        "DRU",
+        "BRD",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Enhancement Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Polished Bone Bracelet",
+      "slug": "polished-bone-bracelet",
+      "url": "https://eqlegendstools.com/items/polished-bone-bracelet/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Efficiency I"
+        }
+      ]
+    },
+    {
+      "name": "Polished Bone Hoop",
+      "slug": "polished-bone-hoop",
+      "url": "https://eqlegendstools.com/items/polished-bone-hoop/",
+      "slot": "EAR",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation I"
+        }
+      ]
+    },
+    {
+      "name": "Polished Mithril Mask",
+      "slug": "polished-mithril-mask",
+      "url": "https://eqlegendstools.com/items/polished-mithril-mask/",
+      "slot": "FACE",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage II"
+        }
+      ]
+    },
+    {
+      "name": "Reed Belt",
+      "slug": "reed-belt",
+      "url": "https://eqlegendstools.com/items/reed-belt/",
+      "slot": "WAIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction II"
+        }
+      ]
+    },
+    {
+      "name": "Ring of Goblin Lords",
+      "slug": "ring-of-goblin-lords",
+      "url": "https://eqlegendstools.com/items/ring-of-goblin-lords/",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Robe of Enshroudment",
+      "slug": "robe-of-enshroudment",
+      "url": "https://eqlegendstools.com/items/robe-of-enshroudment/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Robe of the Elements",
+      "slug": "robe-of-the-elements",
+      "url": "https://eqlegendstools.com/items/robe-of-the-elements/",
+      "slot": "CHEST",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Summoning Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Robe of the Ishva",
+      "slug": "robe-of-the-ishva",
+      "url": "https://eqlegendstools.com/items/robe-of-the-ishva/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency III"
+        }
+      ]
+    },
+    {
+      "name": "Robe of the Kedge",
+      "slug": "robe-of-the-kedge",
+      "url": "https://eqlegendstools.com/items/robe-of-the-kedge/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation III"
+        }
+      ]
+    },
+    {
+      "name": "Robe of the Oracle",
+      "slug": "robe-of-the-oracle",
+      "url": "https://eqlegendstools.com/items/robe-of-the-oracle/",
+      "slot": "CHEST",
+      "classes": [
+        "MNK",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage I"
+        }
+      ]
+    },
+    {
+      "name": "Rokyls Channelling Crystal",
+      "slug": "rokyls-channelling-crystal",
+      "url": "https://eqlegendstools.com/items/rokyls-channelling-crystal/",
+      "slot": "SECONDARY",
+      "classes": [
+        "BRD",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement III"
+        }
+      ]
+    },
+    {
+      "name": "Runed Cowl",
+      "slug": "runed-cowl",
+      "url": "https://eqlegendstools.com/items/runed-cowl/",
+      "slot": "HEAD",
+      "classes": [
+        "BRD",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Runed Mithril Bracer",
+      "slug": "runed-mithril-bracer",
+      "url": "https://eqlegendstools.com/items/runed-mithril-bracer/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation III"
+        }
+      ]
+    },
+    {
+      "name": "Savant's Cap",
+      "slug": "savants-cap",
+      "url": "https://eqlegendstools.com/items/savants-cap/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation II"
+        }
+      ]
+    },
+    {
+      "name": "Selo`s Drums of the March",
+      "slug": "selo-s-drums-of-the-march",
+      "url": "https://eqlegendstools.com/items/selo-s-drums-of-the-march/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Percussion Resonance: 14"
+        }
+      ]
+    },
+    {
+      "name": "Serpentine Bracer",
+      "slug": "serpentine-bracer",
+      "url": "https://eqlegendstools.com/items/serpentine-bracer/",
+      "slot": "WRIST",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction II"
+        }
+      ]
+    },
+    {
+      "name": "Sharkskin Drum",
+      "slug": "sharkskin-drum",
+      "url": "https://eqlegendstools.com/items/sharkskin-drum/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Percussion Resonance: 12"
+        }
+      ]
+    },
+    {
+      "name": "Shazda Turban",
+      "slug": "shazda-turban",
+      "url": "https://eqlegendstools.com/items/shazda-turban/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement I"
+        }
+      ]
+    },
+    {
+      "name": "Shining Metallic Robes",
+      "slug": "shining-metallic-robes",
+      "url": "https://eqlegendstools.com/items/shining-metallic-robes/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Shiny Robe of the Underfoot",
+      "slug": "shiny-robe-of-the-underfoot",
+      "url": "https://eqlegendstools.com/items/shiny-robe-of-the-underfoot/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste II"
+        }
+      ]
+    },
+    {
+      "name": "Shovel of Ponz",
+      "slug": "shovel-of-ponz",
+      "url": "https://eqlegendstools.com/items/shovel-of-ponz/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Minion of Earth"
+        }
+      ]
+    },
+    {
+      "name": "Siryn Hair Hood",
+      "slug": "siryn-hair-hood",
+      "url": "https://eqlegendstools.com/items/siryn-hair-hood/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction II"
+        }
+      ]
+    },
+    {
+      "name": "Smoldering Robe",
+      "slug": "smoldering-robe",
+      "url": "https://eqlegendstools.com/items/smoldering-robe/",
+      "slot": "CHEST",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Minor Improved Damage I"
+        }
+      ]
+    },
+    {
+      "name": "Spiked Buckler",
+      "slug": "spiked-buckler",
+      "url": "https://eqlegendstools.com/items/spiked-buckler/",
+      "slot": "SECONDARY",
+      "classes": [
+        "WAR",
+        "CLR",
+        "PAL",
+        "RNG",
+        "SHD",
+        "DRU",
+        "BRD",
+        "ROG",
+        "SHM"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage I"
+        }
+      ]
+    },
+    {
+      "name": "Squallsurge Shawl",
+      "slug": "squallsurge-shawl",
+      "url": "https://eqlegendstools.com/items/squallsurge-shawl/",
+      "slot": "SHOULDERS",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Staff of Elemental Mastery: Air",
+      "slug": "staff-of-elemental-mastery-air",
+      "url": "https://eqlegendstools.com/items/staff-of-elemental-mastery-air/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Servant of Air"
+        }
+      ]
+    },
+    {
+      "name": "Staff of Elemental Mastery: Earth",
+      "slug": "staff-of-elemental-mastery-earth",
+      "url": "https://eqlegendstools.com/items/staff-of-elemental-mastery-earth/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Servant of Earth"
+        }
+      ]
+    },
+    {
+      "name": "Staff of Elemental Mastery: Fire",
+      "slug": "staff-of-elemental-mastery-fire",
+      "url": "https://eqlegendstools.com/items/staff-of-elemental-mastery-fire/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Servant of Fire"
+        }
+      ]
+    },
+    {
+      "name": "Staff of Elemental Mastery: Water",
+      "slug": "staff-of-elemental-mastery-water",
+      "url": "https://eqlegendstools.com/items/staff-of-elemental-mastery-water/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Servant of Water"
+        }
+      ]
+    },
+    {
+      "name": "Stein of Ulissa",
+      "slug": "stein-of-ulissa",
+      "url": "https://eqlegendstools.com/items/stein-of-ulissa/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Minion of Water"
+        }
+      ]
+    },
+    {
+      "name": "Tarnished Ancient Tiara",
+      "slug": "tarnished-ancient-tiara",
+      "url": "https://eqlegendstools.com/items/tarnished-ancient-tiara/",
+      "slot": "HEAD",
+      "classes": [
+        "CLR",
+        "BRD",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation I"
+        }
+      ]
+    },
+    {
+      "name": "Testament of Vanear",
+      "slug": "testament-of-vanear",
+      "url": "https://eqlegendstools.com/items/testament-of-vanear/",
+      "slot": "SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation I"
+        }
+      ]
+    },
+    {
+      "name": "The Artist's Brush",
+      "slug": "the-artists-brush",
+      "url": "https://eqlegendstools.com/items/the-artists-brush/",
+      "slot": "RANGE PRIMARY SECONDARY",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reagent Conservation I"
+        }
+      ]
+    },
+    {
+      "name": "Torch of Alna",
+      "slug": "torch-of-alna",
+      "url": "https://eqlegendstools.com/items/torch-of-alna/",
+      "slot": "PRIMARY",
+      "classes": [
+        "MAG"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Minion of Fire"
+        }
+      ]
+    },
+    {
+      "name": "Totemic Breastplate",
+      "slug": "totemic-breastplate",
+      "url": "https://eqlegendstools.com/items/totemic-breastplate/",
+      "slot": "CHEST",
+      "classes": [
+        "SHM"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Extended Enhancement II"
+        }
+      ]
+    },
+    {
+      "name": "Turtleshell Helm",
+      "slug": "turtleshell-helm",
+      "url": "https://eqlegendstools.com/items/turtleshell-helm/",
+      "slot": "HEAD",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Healing I"
+        }
+      ]
+    },
+    {
+      "name": "Unicorn Horn",
+      "slug": "unicorn-horn",
+      "url": "https://eqlegendstools.com/items/unicorn-horn/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 12"
+        }
+      ]
+    },
+    {
+      "name": "Vagrant's Tunic",
+      "slug": "vagrants-tunic",
+      "url": "https://eqlegendstools.com/items/vagrants-tunic/",
+      "slot": "CHEST",
+      "classes": [
+        "WAR",
+        "CLR",
+        "PAL",
+        "RNG",
+        "SHD",
+        "DRU",
+        "MNK",
+        "BRD",
+        "ROG",
+        "SHM",
+        "BST",
+        "BER"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation I"
+        }
+      ]
+    },
+    {
+      "name": "White Dragonscale Cloak",
+      "slug": "white-dragonscale-cloak",
+      "url": "https://eqlegendstools.com/items/white-dragonscale-cloak/",
+      "slot": "BACK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Damage III"
+        }
+      ]
+    },
+    {
+      "name": "White Gold Necklace",
+      "slug": "white-gold-necklace",
+      "url": "https://eqlegendstools.com/items/white-gold-necklace/",
+      "slot": "NECK",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Affliction Efficiency II"
+        }
+      ]
+    },
+    {
+      "name": "Wicked Sallet",
+      "slug": "wicked-sallet",
+      "url": "https://eqlegendstools.com/items/wicked-sallet/",
+      "slot": "HEAD",
+      "classes": [
+        "SHD"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Mana Preservation I"
+        }
+      ]
+    },
+    {
+      "name": "Wine Thief",
+      "slug": "wine-thief",
+      "url": "https://eqlegendstools.com/items/wine-thief/",
+      "slot": "PRIMARY",
+      "classes": [
+        "SHD",
+        "NEC"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Vampirism II"
+        }
+      ]
+    },
+    {
+      "name": "Wolf Fur Slippers",
+      "slug": "wolf-fur-slippers",
+      "url": "https://eqlegendstools.com/items/wolf-fur-slippers/",
+      "slot": "FEET",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Spell Haste I"
+        }
+      ]
+    },
+    {
+      "name": "Wooden Flute",
+      "slug": "wooden-flute",
+      "url": "https://eqlegendstools.com/items/wooden-flute/",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "ALL"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Wind Resonance: 8"
+        }
+      ]
+    },
+    {
+      "name": "Zaharn's Coronet",
+      "slug": "zaharns-coronet",
+      "url": "https://eqlegendstools.com/items/zaharns-coronet/",
+      "slot": "HEAD",
+      "classes": [
+        "CLR",
+        "DRU",
+        "SHM"
+      ],
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Improved Healing I"
+        }
+      ]
+    },
+    {
+      "name": "Cherista's Fangs",
+      "slug": "Cherista%27s_Fangs",
+      "url": "https://eqlwiki.com/Cherista%27s_Fangs",
+      "slot": "PRIMARY SECONDARY",
+      "classes": [
+        "MNK",
+        "BST"
+      ],
+      "source": "eqlwiki",
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Lifebite"
+        }
+      ]
+    },
+    {
+      "name": "Cryosilk Cap",
+      "slug": "Cryosilk_Cap",
+      "url": "https://eqlwiki.com/Cryosilk_Cap",
+      "slot": "HEAD",
+      "classes": [
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "source": "eqlwiki",
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Burning Affliction III"
+        }
+      ]
+    },
+    {
+      "name": "Drums of the Beast",
+      "slug": "Drums_of_the_Beast",
+      "url": "https://eqlwiki.com/Drums_of_the_Beast",
+      "slot": "PRIMARY",
+      "classes": [
+        "BRD"
+      ],
+      "source": "eqlwiki",
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Percussion Resonance: 16"
+        }
+      ]
+    },
+    {
+      "name": "Grotesque Girdle",
+      "slug": "Grotesque_Girdle",
+      "url": "https://eqlwiki.com/Grotesque_Girdle",
+      "slot": "WAIST",
+      "classes": [
+        "CLR",
+        "DRU",
+        "SHM",
+        "NEC",
+        "WIZ",
+        "MAG",
+        "ENC"
+      ],
+      "source": "eqlwiki",
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Reanimation Haste III"
+        }
+      ]
+    },
+    {
+      "name": "Mistmoore Heirloom Ring",
+      "slug": "Mistmoore_Heirloom_Ring",
+      "url": "https://eqlwiki.com/Mistmoore_Heirloom_Ring",
+      "slot": "FINGER",
+      "classes": [
+        "ALL"
+      ],
+      "source": "eqlwiki",
+      "effects": [
+        {
+          "type": "focus",
+          "name": "Heritage of Mistmoore"
+        }
+      ]
+    }
+  ],
+  "focus_reference": {
+    "Extended Enhancement I": {
+      "category": "Extended Enhancement",
+      "tier": "I",
+      "description": "Increase Buff Spell Duration by 15% (48 sec Minimum Duration). Limit: Max Level (20).",
+      "items": [
+        "Bear-hide Boots",
+        "Damask Robe",
+        "Lockjaw Hide Vest",
+        "Shazda Turban"
+      ]
+    },
+    "Extended Enhancement II": {
+      "category": "Extended Enhancement",
+      "tier": "II",
+      "description": "Increase Buff Spell Duration by 15% (48 sec Minimum Duration). Limit: Max Level (44).",
+      "items": [
+        "Batfang Headband",
+        "Chestplate of the Constant",
+        "Clawed Knuckle-Ring",
+        "Drakescale Belt",
+        "Totemic Breastplate"
+      ]
+    },
+    "Extended Enhancement III": {
+      "category": "Extended Enhancement",
+      "tier": "III",
+      "description": "Increase Buff Spell Duration by 15% (48 sec Minimum Duration). Limit: Max Level (60).",
+      "items": [
+        "Rokyls Channelling Crystal"
+      ]
+    },
+    "Improved Healing I": {
+      "category": "Improved Healing",
+      "tier": "I",
+      "description": "Increase Healing by 20%. Limit: Max Level (20).",
+      "items": [
+        "Turtleshell Helm",
+        "Zaharns Coronet"
+      ]
+    },
+    "Improved Healing II": {
+      "category": "Improved Healing",
+      "tier": "II",
+      "description": "Increase Healing by 20%. Limit: Max Level (44).",
+      "items": []
+    },
+    "Improved Healing III": {
+      "category": "Improved Healing",
+      "tier": "III",
+      "description": "Increase Healing by 20%. Limit: Max Level (60).",
+      "items": [
+        "Idol of the Underking"
+      ]
+    },
+    "Burning Affliction I": {
+      "category": "Burning Affliction",
+      "tier": "I",
+      "description": "Increase Damage over Time Spell Damage by 20%. Limit: Max Level (20).",
+      "items": [
+        "Allize Volew Medicine Bag",
+        "Aviak Charm",
+        "Golden Ear Stud",
+        "Hollowed Bone Bracers"
+      ]
+    },
+    "Burning Affliction II": {
+      "category": "Burning Affliction",
+      "tier": "II",
+      "description": "Increase Damage over Time Spell Damage by 20%. Limit: Max Level (44).",
+      "items": [
+        "Kobold-hide Boots",
+        "Reed Belt",
+        "Serpentine Bracer"
+      ]
+    },
+    "Burning Affliction III": {
+      "category": "Burning Affliction",
+      "tier": "III",
+      "description": "Increase Damage over Time Spell Damage by 20%. Limit: Max Level (60).",
+      "items": [
+        "Bone-Clasped Girdle"
+      ]
+    },
+    "Improved Damage I": {
+      "category": "Improved Damage",
+      "tier": "I",
+      "description": "Increase Spell Damage by 20% (Instant Direct Damage Spells Only). Limit: Max Level (20).",
+      "items": [
+        "Azure Sleeves",
+        "Lupine Claw Gauntlets",
+        "Mammoth Hide Cloak",
+        "Robe of the Oracle"
+      ]
+    },
+    "Improved Damage II": {
+      "category": "Improved Damage",
+      "tier": "II",
+      "description": "Increase Spell Damage by 20% (Instant Direct Damage Spells Only). Limit: Max Level (44).",
+      "items": [
+        "Polished Mithril Mask"
+      ]
+    },
+    "Improved Damage III": {
+      "category": "Improved Damage",
+      "tier": "III",
+      "description": "Increase Spell Damage by 20% (Instant Direct Damage Spells Only). Limit: Max Level (60).",
+      "items": [
+        "Jungle Spider Fur Cap",
+        "White Dragonscale Cloak"
+      ]
+    },
+    "Affliction Haste I": {
+      "category": "Affliction Haste",
+      "tier": "I",
+      "description": "Increase Damage over Time and Debuff Spell Haste by 33%. Limit: Max Level (20).",
+      "items": [
+        "Granite Bracer",
+        "Ring of Goblin Lords"
+      ]
+    },
+    "Affliction Haste II": {
+      "category": "Affliction Haste",
+      "tier": "II",
+      "description": "Increase Damage over Time and Debuff Spell Haste by 33%. Limit: Max Level (44).",
+      "items": [
+        "Chrysoberyl Talisman",
+        "Green Silken Drape"
+      ]
+    },
+    "Affliction Haste III": {
+      "category": "Affliction Haste",
+      "tier": "III",
+      "description": "Increase Damage over Time and Debuff Spell Haste by 33%. Limit: Max Level (60).",
+      "items": []
+    },
+    "Enhancement Haste I": {
+      "category": "Enhancement Haste",
+      "tier": "I",
+      "description": "Increase Buff Spell Haste by 30% (72 Sec Minimum Duration). Limit: Max Level (20).",
+      "items": [
+        "Braided Ivy Cords",
+        "Cape of Midnight Mist",
+        "Cat Skull Cap",
+        "Gatorscale Sleeves"
+      ]
+    },
+    "Enhancement Haste II": {
+      "category": "Enhancement Haste",
+      "tier": "II",
+      "description": "Increase Buff Spell Haste by 30% (72 Sec Minimum Duration). Limit: Max Level (44).",
+      "items": [
+        "Golden Efreeti Boots",
+        "Platinum Tiara"
+      ]
+    },
+    "Enhancement Haste III": {
+      "category": "Enhancement Haste",
+      "tier": "III",
+      "description": "Increase Buff Spell Haste by 30% (72 Sec Minimum Duration). Limit: Max Level (60).",
+      "items": []
+    },
+    "Spell Haste I": {
+      "category": "Spell Haste",
+      "tier": "I",
+      "description": "Increase Spell Haste by 15% (Excludes Complete Heal). Limit: Max Level (20).",
+      "items": [
+        "Beaded Slime Necklace",
+        "Bracelet of Woven Grass",
+        "Gilded Cloth",
+        "Wolf Fur Slippers"
+      ]
+    },
+    "Spell Haste II": {
+      "category": "Spell Haste",
+      "tier": "II",
+      "description": "Increase Spell Haste by 15% (Excludes Complete Heal). Limit: Max Level (44).",
+      "items": [
+        "Djarns Amethyst Ring",
+        "Mithril-Runed Tunic",
+        "Shining Metallic Robes",
+        "Shiny Robe of the Underfoot"
+      ]
+    },
+    "Spell Haste III": {
+      "category": "Spell Haste",
+      "tier": "III",
+      "description": "Increase Spell Haste by 15% (Excludes Complete Heal). Limit: Max Level (60).",
+      "items": []
+    },
+    "Summoning Haste I": {
+      "category": "Summoning Haste",
+      "tier": "I",
+      "description": "Increase Spell Haste by 30% (Summoned Pets Only). Limit: Max Level (20).",
+      "items": [
+        "A Shimmering Orb",
+        "Adamantite Band"
+      ]
+    },
+    "Summoning Haste II": {
+      "category": "Summoning Haste",
+      "tier": "II",
+      "description": "Increase Spell Haste by 30% (Summoned Pets Only). Limit: Max Level (44).",
+      "items": [
+        "Incandescent Mask",
+        "Robe of the Elements"
+      ]
+    },
+    "Summoning Haste III": {
+      "category": "Summoning Haste",
+      "tier": "III",
+      "description": "Increase Spell Haste by 30% (Summoned Pets Only). Limit: Max Level (60).",
+      "items": [
+        "Brell's Girdle"
+      ]
+    },
+    "Reanimation Haste I": {
+      "category": "Reanimation Haste",
+      "tier": "I",
+      "description": "Increase Spell Haste by 30% (Summon Skeleton Pets Only). Limit: Max Level (20).",
+      "items": [
+        "Carved Ivory Mask",
+        "Ivory Bracelet",
+        "Nightshade Wreath"
+      ]
+    },
+    "Reanimation Haste II": {
+      "category": "Reanimation Haste",
+      "tier": "II",
+      "description": "Increase Spell Haste by 30% (Summon Skeleton Pets Only). Limit: Max Level (44).",
+      "items": [
+        "Robe of Enshroudment"
+      ]
+    },
+    "Reanimation Haste III": {
+      "category": "Reanimation Haste",
+      "tier": "III",
+      "description": "Increase Spell Haste by 30% (Summon Skeleton Pets Only). Limit: Max Level (60).",
+      "items": [
+        "Grotesque Girdle"
+      ]
+    },
+    "Affliction Efficiency I": {
+      "category": "Affliction Efficiency",
+      "tier": "I",
+      "description": "Decrease Damage over Time and Debuff Spell Mana Cost by 25%. Limit: Max Level (20).",
+      "items": [
+        "Diamondine Earring",
+        "Impskin Gloves",
+        "Polished Bone Bracelet"
+      ]
+    },
+    "Affliction Efficiency II": {
+      "category": "Affliction Efficiency",
+      "tier": "II",
+      "description": "Decrease Damage over Time and Debuff Spell Mana Cost by 25%. Limit: Max Level (44).",
+      "items": [
+        "Chipped Bone Bracelet",
+        "Squallsurge Shawl",
+        "White Gold Necklace"
+      ]
+    },
+    "Affliction Efficiency III": {
+      "category": "Affliction Efficiency",
+      "tier": "III",
+      "description": "Decrease Damage over Time and Debuff Spell Mana Cost by 25%. Limit: Max Level (60).",
+      "items": []
+    },
+    "Mana Preservation I": {
+      "category": "Mana Preservation",
+      "tier": "I",
+      "description": "Decrease Spell Mana Cost by 10% (Excludes Complete Heal). Limit: Max Level (20).",
+      "items": [
+        "Platinum Armband",
+        "Polished Bone Hoop",
+        "Testament of Vanear"
+      ]
+    },
+    "Mana Preservation II": {
+      "category": "Mana Preservation",
+      "tier": "II",
+      "description": "Decrease Spell Mana Cost by 10% (Excludes Complete Heal). Limit: Max Level (44).",
+      "items": [
+        "Black Alloy Medallion",
+        "Mane Attraction"
+      ]
+    },
+    "Mana Preservation III": {
+      "category": "Mana Preservation",
+      "tier": "III",
+      "description": "Decrease Spell Mana Cost by 10% (Excludes Complete Heal). Limit: Max Level (60).",
+      "items": []
+    },
+    "Reanimation Efficiency I": {
+      "category": "Reanimation Efficiency",
+      "tier": "I",
+      "description": "Decrease Spell Mana Cost by 25% (Summon Skeleton Pets Only). Limit: Max Level (20).",
+      "items": [
+        "Dark Circlet",
+        "Flowing Black Robe",
+        "Lizardskin Tribal Mask"
+      ]
+    },
+    "Reanimation Efficiency II": {
+      "category": "Reanimation Efficiency",
+      "tier": "II",
+      "description": "Decrease Spell Mana Cost by 25% (Summon Skeleton Pets Only). Limit: Max Level (44).",
+      "items": [
+        "Platinum Skull Ring",
+        "Runed Cowl"
+      ]
+    },
+    "Reanimation Efficiency III": {
+      "category": "Reanimation Efficiency",
+      "tier": "III",
+      "description": "Decrease Spell Mana Cost by 25% (Summon Skeleton Pets Only). Limit: Max Level (60).",
+      "items": []
+    },
+    "Summoning Efficiency I": {
+      "category": "Summoning Efficiency",
+      "tier": "I",
+      "description": "Decrease Spell Mana Cost by 25% (Summoned Pets Only). Limit: Max Level (20).",
+      "items": [
+        "Band of Flesh",
+        "Dusty Bloodstained Gloves",
+        "Gossamer Robe"
+      ]
+    },
+    "Summoning Efficiency II": {
+      "category": "Summoning Efficiency",
+      "tier": "II",
+      "description": "Decrease Spell Mana Cost by 25% (Summoned Pets Only). Limit: Max Level (44).",
+      "items": [
+        "Embroidered Black Sleeves",
+        "Robe of the Ishva"
+      ]
+    },
+    "Summoning Efficiency III": {
+      "category": "Summoning Efficiency",
+      "tier": "III",
+      "description": "Decrease Spell Mana Cost by 25% (Summoned Pets Only). Limit: Max Level (60).",
+      "items": []
+    },
+    "Extended Range I": {
+      "category": "Extended Range",
+      "tier": "I",
+      "description": "Increase Spell Range by 15%. Limit: Max Level (20).",
+      "items": [
+        "An Elven Charm Necklace",
+        "Drake-hide Sleeves",
+        "Glowing Bone Collar"
+      ]
+    },
+    "Extended Range II": {
+      "category": "Extended Range",
+      "tier": "II",
+      "description": "Increase Spell Range by 15%. Limit: Max Level (44).",
+      "items": [
+        "Moonstone Ring"
+      ]
+    },
+    "Extended Range III": {
+      "category": "Extended Range",
+      "tier": "III",
+      "description": "Increase Spell Range by 15%. Limit: Max Level (60).",
+      "items": [
+        "Cryosilk Sash"
+      ]
+    },
+    "Reagent Conservation I": {
+      "category": "Reagent Conservation",
+      "tier": "I",
+      "description": "Decrease Chance of Using Reagent by 15%. Limit: Max Level (20).",
+      "items": [
+        "Batskull Earring",
+        "Drake-hide Leggings",
+        "Happy Love Bracers"
+      ]
+    },
+    "Reagent Conservation II": {
+      "category": "Reagent Conservation",
+      "tier": "II",
+      "description": "Decrease Chance of Using Reagent by 15%. Limit: Max Level (44).",
+      "items": [
+        "Amethyst Bracelet",
+        "Crown of Leaves",
+        "Fine Silk Turban",
+        "Savants Cap"
+      ]
+    },
+    "Reagent Conservation III": {
+      "category": "Reagent Conservation",
+      "tier": "III",
+      "description": "Decrease Chance of Using Reagent by 15%. Limit: Max Level (60).",
+      "items": [
+        "Robe of the Kedge",
+        "Runed Mithril Bracer"
+      ]
+    },
+    "Lifebite": {
+      "category": "Lifetap",
+      "tier": "",
+      "description": "Drains your target of life energy, siphoning between 42 and 42 hit points.",
+      "items": [
+        "Cherista's Fangs"
+      ]
+    },
+    "Heritage of Mistmoore": {
+      "category": "Health and Mana",
+      "tier": "",
+      "description": "Increases your health and mana regeneration while also decreasing your resistances to magic and fire.",
+      "items": [
+        "Mistmoore Heirloom Ring"
+      ]
+    },
+    "Percussion Resonance: 16": {
+      "category": "Bard Instrument",
+      "tier": "16",
+      "description": "Increases the power of percussion instrument based bard songs by up to 160%.",
+      "items": [
+        "Drums of the Beast"
+      ]
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EQ Legends Exaltation Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>EQ Legends Exaltation Planner</h1>
+    <div id="status"></div>
+    <a id="donate" href="https://buymeacoffee.com/spudsly" target="_blank" rel="noopener">&#9749; Buy me a coffee</a>
+  </header>
+
+  <div id="picker">
+    <span class="picker-label">Class trio:</span>
+    <select id="trio0"></select>
+    <select id="trio1"></select>
+    <select id="trio2"></select>
+    <button id="loadBtn" type="button">Load effects</button>
+    <span class="picker-spacer"></span>
+    <button id="checkAllBtn" type="button">Check all</button>
+    <button id="checkNoneBtn" type="button">Uncheck all</button>
+  </div>
+
+  <main>
+    <section id="gearPane" class="pane">
+      <div class="pane-title">Gear slot class restrictions</div>
+      <div id="gearBody" class="pane-body"></div>
+    </section>
+
+    <section id="checkPane" class="pane grow">
+      <div class="pane-title">Desired focus effects</div>
+      <div id="checkBody" class="pane-body"></div>
+    </section>
+
+    <section id="buildPane" class="pane grow">
+      <div class="pane-title">Force specific choice</div>
+      <div id="buildBody" class="pane-body"></div>
+    </section>
+
+    <section id="planPane" class="pane">
+      <div class="pane-title" id="planTitle">Best path</div>
+      <button id="clearPlanBtn" type="button" title="Clear plan">&#10005;</button>
+      <div id="planBody" class="pane-body monospace"></div>
+    </section>
+  </main>
+
+  <footer>
+    One focus per equipment slot &middot; ear / ring / wrist pairs are independent &middot;
+    PRIM or SECONDARY both work &middot; BEST: either weapon hand
+  </footer>
+
+  <script src="planner.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+﻿{
+  "name": "eql-exaltation-planner-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static web port of the EQ Legends Exaltation Planner",
+  "scripts": {
+    "test": "node test_parity.js && node test_web.js",
+    "gen-golden": "python gen_golden.py"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
+}
