@@ -2265,22 +2265,6 @@
       ]
     },
     {
-      "name": "Drums of the Beast",
-      "slug": "Drums_of_the_Beast",
-      "url": "https://eqlwiki.com/Drums_of_the_Beast",
-      "slot": "PRIMARY",
-      "classes": [
-        "BRD"
-      ],
-      "source": "eqlwiki",
-      "effects": [
-        {
-          "type": "focus",
-          "name": "Percussion Resonance: 16"
-        }
-      ]
-    },
-    {
       "name": "Grotesque Girdle",
       "slug": "Grotesque_Girdle",
       "url": "https://eqlwiki.com/Grotesque_Girdle",
@@ -2732,14 +2716,6 @@
       "description": "Increases your health and mana regeneration while also decreasing your resistances to magic and fire.",
       "items": [
         "Mistmoore Heirloom Ring"
-      ]
-    },
-    "Percussion Resonance: 16": {
-      "category": "Bard Instrument",
-      "tier": "16",
-      "description": "Increases the power of percussion instrument based bard songs by up to 160%.",
-      "items": [
-        "Drums of the Beast"
       ]
     }
   }
