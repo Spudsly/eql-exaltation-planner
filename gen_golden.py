@@ -36,11 +36,15 @@ def trio_key(t):
     return "/".join(t)
 
 
-def build_effects(data, trio):
+def build_full(data, trio):
     items = planner.class_filter(data, trio)
-    effects = planner.focus_effects_available(data, items, set(trio))
-    effects = planner.max_rank_per_family(effects)
-    return effects
+    fx = planner.focus_effects_available(data, items, set(trio))
+    effects = planner.max_rank_per_family(fx)
+    return effects, fx
+
+
+def build_effects(data, trio):
+    return build_full(data, trio)[0]
 
 
 def sorted_names(effects):
@@ -61,6 +65,7 @@ def stats_payload(stats):
         "not_honored": list(stats["not_honored"]),
         "clashes": stats["clashes"],
         "why_here": stats["why_here"],
+        "fell_back": stats.get("fell_back", {}),
     }
 
 
@@ -74,9 +79,9 @@ def main():
     broad = TRIOS[:: len(TRIOS) // 40][:40]
     t0 = time.time()
     for trio in broad + BROAD_TRIOS:
-        effects = build_effects(data, trio)
+        effects, fx = build_full(data, trio)
         chosen = sorted_names(effects)[:12]
-        plan, stats = planner.optimize_plan(effects, chosen, trio)
+        plan, stats = planner.optimize_plan(effects, chosen, trio, all_effects=fx)
         golden["scenarios"].append({
             "trio": trio, "chosen": chosen, "gear_ok": None, "any_slots": None,
             "forced": None, "plan": sorted_rows(plan), "stats": stats_payload(stats),
@@ -87,7 +92,7 @@ def main():
     # Tier 3: restriction/any/forced stress on representative trios.
     t0 = time.time()
     for trio in BROAD_TRIOS:
-        effects = build_effects(data, trio)
+        effects, fx = build_full(data, trio)
         chosen = sorted_names(effects)
         n = min(13, len(chosen))
         chosen = chosen[:n]
@@ -102,7 +107,7 @@ def main():
             "WRIST": [],
             "WRIST #2": trio,
         }
-        plan, stats = planner.optimize_plan(effects, chosen, trio, gear_ok=gear_ok)
+        plan, stats = planner.optimize_plan(effects, chosen, trio, gear_ok=gear_ok, all_effects=fx)
         golden["scenarios"].append({
             "trio": trio, "chosen": chosen, "gear_ok": gear_ok,
             "any_slots": None, "forced": None,
@@ -113,7 +118,7 @@ def main():
                      {"slot": "EARS", "classes": [trio[0]]},
                      {"slot": "WRIST", "classes": None},
                      {"slot": ""}]
-        plan, stats = planner.optimize_plan(effects, chosen, trio, any_slots=any_slots)
+        plan, stats = planner.optimize_plan(effects, chosen, trio, any_slots=any_slots, all_effects=fx)
         golden["scenarios"].append({
             "trio": trio, "chosen": chosen, "gear_ok": None, "any_slots": any_slots,
             "forced": None, "plan": sorted_rows(plan), "stats": stats_payload(stats),
@@ -124,14 +129,15 @@ def main():
             for nm in (chosen[0], chosen[2]):
                 bucket = effects[nm]["sources"][0]["slot"]
                 forced[nm] = bucket
-        plan, stats = planner.optimize_plan(effects, chosen, trio, forced=forced)
+        plan, stats = planner.optimize_plan(effects, chosen, trio, forced=forced, all_effects=fx)
         golden["scenarios"].append({
             "trio": trio, "chosen": chosen, "gear_ok": None, "any_slots": None,
             "forced": forced, "plan": sorted_rows(plan), "stats": stats_payload(stats),
         })
 
         plan, stats = planner.optimize_plan(
-            effects, chosen, trio, forced=forced, gear_ok=gear_ok, any_slots=any_slots)
+            effects, chosen, trio, forced=forced, gear_ok=gear_ok,
+            any_slots=any_slots, all_effects=fx)
         golden["scenarios"].append({
             "trio": trio, "chosen": chosen, "gear_ok": gear_ok, "any_slots": any_slots,
             "forced": forced, "plan": sorted_rows(plan), "stats": stats_payload(stats),
@@ -140,19 +146,19 @@ def main():
         4 * len(BROAD_TRIOS), time.time() - t0))
 
     # Tier 1: the desktop smoke's own expectations.
-    effects = build_effects(data, ["CLR", "DRU", "SHM"])
+    effects, fx = build_full(data, ["CLR", "DRU", "SHM"])
     golden["effects_available"][trio_key(["CLR", "DRU", "SHM"])] = sorted(effects)
-    plan, stats = planner.optimize_plan(effects, sorted_names(effects), ["CLR", "DRU", "SHM"])
+    plan, stats = planner.optimize_plan(effects, sorted_names(effects), ["CLR", "DRU", "SHM"], all_effects=fx)
     golden["scenarios"].append({
         "trio": ["CLR", "DRU", "SHM"], "chosen": sorted_names(effects),
         "gear_ok": None, "any_slots": None, "forced": None,
         "plan": sorted_rows(plan), "stats": stats_payload(stats),
     })
 
-    effects = build_effects(data, ["SHM", "WAR", "MNK"])
+    effects, fx = build_full(data, ["SHM", "WAR", "MNK"])
     golden["effects_available"][trio_key(["SHM", "WAR", "MNK"])] = sorted(effects)
     chosen = sorted_names(effects)
-    plan, stats = planner.optimize_plan(effects, chosen, ["SHM", "WAR", "MNK"])
+    plan, stats = planner.optimize_plan(effects, chosen, ["SHM", "WAR", "MNK"], all_effects=fx)
     golden["scenarios"].append({
         "trio": ["SHM", "WAR", "MNK"], "chosen": chosen,
         "gear_ok": None, "any_slots": None, "forced": None,
@@ -160,13 +166,13 @@ def main():
     })
 
     for trio in (["CLR", "DRU", "SHM"], ["SHM", "WAR", "MNK"]):
-        effects = build_effects(data, trio)
+        effects, fx = build_full(data, trio)
         chosen = sorted_names(effects)
         gear_ok = {}
         for b in ("EARS", "EARS #2", "FINGERS", "FINGERS #2",
                   "WRIST", "WRIST #2"):
             gear_ok[b] = [trio[0]]
-        plan, stats = planner.optimize_plan(effects, chosen, trio, gear_ok=gear_ok)
+        plan, stats = planner.optimize_plan(effects, chosen, trio, gear_ok=gear_ok, all_effects=fx)
         golden["scenarios"].append({
             "trio": trio, "chosen": chosen, "gear_ok": gear_ok,
             "any_slots": None, "forced": None,

@@ -95,8 +95,8 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
     sel("#trio2", "Monk");
     $("#loadBtn").click();
     $("#checkAllBtn").click();
-    check(planText().indexOf("14/16 foci placed") >= 0,
-        "best path auto plan 14/16 for SHM/WAR/MNK");
+    check(planText().indexOf("15/16 foci placed") >= 0,
+        "best path auto plan 15/16 for SHM/WAR/MNK");
     const secondary = Array.from(doc.querySelectorAll(".gear-row")).find((r) =>
         r.querySelector(".gear-name").textContent === "SECONDARY");
     Array.from(secondary.querySelectorAll("input")).forEach((cb) => {
@@ -110,8 +110,8 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
     check(!hasSecondary,
         "no focus placed in SECONDARY after disabling it");
 
-    // regression: gear restriction must remove an effect it renders unwearable
-    // AND report it as not placed (WIZ/ENC/SHD, EE III is SECONDARY-only)
+    // regression: a gear restriction that makes the highest rank unwearable
+    // falls back to the next tier and SAYS so (EE III -> EE II here)
     sel("#trio0", "Wizard");
     sel("#trio1", "Enchanter");
     sel("#trio2", "Shadow Knight");
@@ -141,10 +141,11 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
             cb.dispatchEvent(new window.Event("change"));
         }
     });
-    check(planText().indexOf("8/9 foci placed") >= 0 &&
+    check(planText().indexOf("9/9 foci placed") >= 0 &&
         planText().indexOf("SECONDARY <-") < 0 &&
-        planText().indexOf("Could not fit: Extended Enhancement III") >= 0,
-        "gear restriction drops SECONDARY-only focus and reports it not placed");
+        planText().indexOf("requested Extended Enhancement III") >= 0 &&
+        planText().indexOf("Could not fit") < 0,
+        "gear restriction downgrades to Extended Enhancement II and notes it");
 
     console.log("\nALL WEB UI CHECKS PASSED (" + passed + " assertions)");
     window.close();

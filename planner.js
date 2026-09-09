@@ -246,7 +246,7 @@
     // ------------------------------------------------------------- optimizer
     const NEG_CNT = -1000000000;
 
-    function optimize_plan(effects, chosen_names, trio, forced, gear_ok, any_slots) {
+    function optimizeOnce(effects, chosen_names, trio, forced, gear_ok, any_slots) {
         forced = forced || {};
         gear_ok = gear_ok || {};
         const trio_set = new Set(trio);
@@ -599,6 +599,82 @@
             not_honored: not_honored,
         };
         return { plan: plan, stats: stats };
+    }
+
+    function lower_rank_name(all_effects, name) {
+        if (!all_effects) return null;
+        const fam = effect_family(name);
+        const rank = effect_rank(name);
+        let best = null;
+        let bestR = 0;
+        Object.keys(all_effects).forEach(function (n) {
+            if (effect_family(n) !== fam) return;
+            const r = effect_rank(n);
+            if (r > 0 && r < rank && r > bestR) { best = n; bestR = r; }
+        });
+        return best;
+    }
+
+    function optimize_plan(effects, chosen_names, trio, forced, gear_ok, any_slots,
+            all_effects) {
+        forced = forced || {};
+        gear_ok = gear_ok || {};
+        all_effects = all_effects || null;
+        const pool = {};
+        Object.keys(effects).forEach((n) => { pool[n] = effects[n]; });
+        if (all_effects) {
+            Object.keys(all_effects).forEach(function (n) {
+                if (!(n in pool)) pool[n] = all_effects[n];
+            });
+        }
+        const current = chosen_names.slice().sort(function (a, b) {
+            const cA = String((pool[a] && pool[a].category) || "");
+            const cB = String((pool[b] && pool[b].category) || "");
+            if (cA < cB) return -1;
+            if (cA > cB) return 1;
+            return a < b ? -1 : a > b ? 1 : 0;
+        });
+        const origin = {};
+        current.forEach((n) => { origin[n] = n; });
+        function pinned(n) {
+            return (n in forced) &&
+                new Set((pool[n] && pool[n].sources || []).map((s) => s.slot))
+                    .has(_pin_slot(forced[n]));
+        }
+        let res = optimizeOnce(pool, current, trio, forced, gear_ok, any_slots);
+        while (true) {
+            const placed = new Set(res.plan.map((p) => p[0]));
+            let lower = -1;
+            let target = null;
+            for (let i = 0; i < current.length; i++) {
+                const n = current[i];
+                if (placed.has(n)) continue;
+                if (pinned(n)) continue;
+                const cand = lower_rank_name(all_effects, n);
+                if (cand !== null) { lower = i; target = cand; break; }
+            }
+            if (lower < 0) break;
+            origin[target] = origin[current[lower]];
+            delete origin[current[lower]];
+            current[lower] = target;
+            res = optimizeOnce(pool, current, trio, forced, gear_ok, any_slots);
+        }
+        res.stats.conflicts = res.stats.conflicts.map(function (n) {
+            return origin[n] !== undefined ? origin[n] : n;
+        });
+        if (res.stats.clashes) {
+            const c2 = {};
+            Object.keys(res.stats.clashes).forEach(function (k) {
+                c2[origin[k] !== undefined ? origin[k] : k] = res.stats.clashes[k];
+            });
+            res.stats.clashes = c2;
+        }
+        const fell_back = {};
+        Object.keys(origin).forEach(function (n) {
+            if (origin[n] !== n) fell_back[n] = origin[n];
+        });
+        res.stats.fell_back = fell_back;
+        return res;
     }
 
     const Planner = {

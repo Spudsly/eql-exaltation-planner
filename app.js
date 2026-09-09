@@ -25,6 +25,7 @@
     // ------------------------------------------------------------- state
     let data = null;
     let effects = {};
+    let effectsAll = {};
     let trio = [];
     let checkVars = {};
     let superMembers = {};
@@ -148,6 +149,7 @@
         trio = t.slice();
         const items = Planner.class_filter(data, trio);
         let fx = Planner.focus_effects_available(data, items, trio);
+        effectsAll = fx;
         effects = Planner.max_rank_per_family(fx);
 
         checkVars = {};
@@ -509,6 +511,7 @@
                 Object.keys(itemChoices).length ? Object.assign({}, itemChoices) : null,
                 gearOk(),
                 anySlots(),
+                effectsAll,
             );
             plan = result.plan;
             stats = result.stats;
@@ -549,6 +552,11 @@
                 line.appendChild(el("span", "plan-note", "   [" + (note || "class only") + "]"));
             }
             line.appendChild(el("span", "plan-why", "    (" + effect + ")"));
+            if (stats.fell_back && stats.fell_back[effect]) {
+                line.appendChild(el("span", "plan-note",
+                    "   (requested " + stats.fell_back[effect] +
+                    " \u2014 didn't fit)"));
+            }
             planBody.appendChild(line);
 
             if (effect in whyHere) {

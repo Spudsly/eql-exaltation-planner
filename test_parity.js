@@ -36,6 +36,11 @@ function buildEffects(data, trio) {
     return effects;
 }
 
+function buildFx(data, trio) {
+    const items = Planner.class_filter(data, trio);
+    return Planner.focus_effects_available(data, items, trio);
+}
+
 function sortedNames(effects) {
     return Object.keys(effects).sort(function (a, b) {
         const cA = effects[a].category;
@@ -65,6 +70,7 @@ function statsPayload(stats) {
         not_honored: stats.not_honored,
         clashes: stats.clashes,
         why_here: stats.why_here,
+        fell_back: stats.fell_back,
     };
 }
 
@@ -76,6 +82,7 @@ function runScenario(data, sc) {
         sc.forced && JSON.parse(JSON.stringify(sc.forced)),
         sc.gear_ok && JSON.parse(JSON.stringify(sc.gear_ok)),
         sc.any_slots && JSON.parse(JSON.stringify(sc.any_slots)),
+        buildFx(data, trio),
     );
     return sortedRows(out.plan);
 }
@@ -129,6 +136,7 @@ for (const sc of golden.scenarios) {
         sc.forced && JSON.parse(JSON.stringify(sc.forced)),
         sc.gear_ok && JSON.parse(JSON.stringify(sc.gear_ok)),
         sc.any_slots && JSON.parse(JSON.stringify(sc.any_slots)),
+        buildFx(data, trio.slice()),
     );
     const gotPlan = sortedRows(result.plan);
     const expectPlan = sc.plan;
