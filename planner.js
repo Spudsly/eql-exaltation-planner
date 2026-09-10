@@ -246,16 +246,43 @@
     // ------------------------------------------------------------- optimizer
     const NEG_CNT = -1000000000;
 
-    function optimizeOnce(effects, chosen_names, trio, forced, gear_ok, any_slots) {
+    function family_chain(all_effects, name) {
+        const list = [];
+        Object.keys(all_effects || {}).forEach(function (n) {
+            if (effect_family(n) === effect_family(name)) list.push(n);
+        });
+        list.sort(function (a, b) { return effect_rank(b) - effect_rank(a); });
+        return list;
+    }
+
+    function optimizeOnce(effects, chosen_names, trio, forced, gear_ok, any_slots,
+            all_effects) {
         forced = forced || {};
         gear_ok = gear_ok || {};
         const trio_set = new Set(trio);
+        const RANK_SCALE = 1000000;
 
         function classes_in(bit) {
             const allowed = gear_ok[bit];
             return allowed !== undefined ? new Set(allowed) : new Set(trio_set);
         }
         function is_all(cls) { return (cls || []).indexOf("ALL") >= 0; }
+        function countMissing(allowedSet, clsSet) {
+            let n = 0;
+            allowedSet.forEach(function (c) { if (!clsSet.has(c)) n++; });
+            return n;
+        }
+        function keepRegion(regions, bit, rankv, excluded, item, rankName) {
+            const cur = regions[bit];
+            if (cur === undefined || rankv > cur[0] ||
+                (rankv === cur[0] && excluded < cur[1])) {
+                regions[bit] = [rankv, excluded, item, rankName];
+            }
+        }
+        function overlap(a, b) {
+            for (const c of a) { if (b.has(c)) return true; }
+            return false;
+        }
 
         // wildcard sockets -> one extra placement target of its chosen type
         const any_names = [];
@@ -271,8 +298,9 @@
         });
 
         const procs = chosen_names.filter(is_proc_augment);
-        const names = [];
-        const candidates = [];
+        const fams = [];
+        const fams_name = [];
+        const rank_to_fam = {};
         const noChoice = [];
         const slot_index = {};
         const item_bucket = {};
@@ -283,60 +311,57 @@
             if (cA > cB) return 1;
             return a < b ? -1 : a > b ? 1 : 0;
         });
-        function overlap(a, b) {
-            for (const c of a) { if (b.has(c)) return true; }
-            return false;
-        }
         sorted_chosen.forEach(function (name) {
             if (is_proc_augment(name)) return;
             const e = effects[name] || {};
-            const choices = [];
-            (e.sources || []).forEach(function (s) {
-                const bucket = s.slot;
-                if (!bucket) return;
-                const cls = new Set(s.classes || []);
-                _plan_regions(bucket).forEach(function (region) {
-                    _slot_bits(region).forEach(function (bit) {
-                        const allowed = classes_in(bit);
-                        if (allowed.size === 0) return;
-                        if (!is_all(s.classes) && !overlap(allowed, cls)) return;
-                        const excluded = is_all(s.classes) ? 0 :
-                            countMissing(allowed, cls);
-                        choices.push([bit, s.item, excluded]);
-                        item_bucket[s.item] = bucket;
-                        if (!(bit in slot_index)) {
-                            slot_index[bit] = Object.keys(slot_index).length;
-                        }
+            let chain = all_effects ? family_chain(all_effects, name) : [name];
+            if (chain.indexOf(name) < 0) chain = [name];
+            const regions = {};
+            chain.forEach(function (cname) {
+                const ce = effects[cname] || {};
+                const rankv = RANK_SCALE * effect_rank(cname);
+                (ce.sources || []).forEach(function (s) {
+                    const bucket = s.slot;
+                    if (!bucket) return;
+                    const cls = new Set(s.classes || []);
+                    _plan_regions(bucket).forEach(function (region) {
+                        _slot_bits(region).forEach(function (bit) {
+                            const allowed = classes_in(bit);
+                            if (allowed.size === 0) return;
+                            if (!is_all(s.classes) && !overlap(allowed, cls)) return;
+                            const excluded = is_all(s.classes) ? 0 :
+                                countMissing(allowed, cls);
+                            keepRegion(regions, bit, rankv, excluded, s.item, cname);
+                            item_bucket[s.item] = bucket;
+                            if (!(bit in slot_index)) {
+                                slot_index[bit] = Object.keys(slot_index).length;
+                            }
+                        });
                     });
-                });
-                for (let i = 0; i < any_names.length; i++) {
-                    const any_name = any_names[i];
-                    const any_base = any_meta[i][0];
-                    const any_allowed = any_meta[i][1];
-                    if (_plan_regions(bucket).indexOf(any_base) < 0) continue;
-                    if (!is_all(s.classes) && !overlap(any_allowed, cls)) continue;
-                    const excluded = is_all(s.classes) ? 0 :
-                        countMissing(any_allowed, cls);
-                    choices.push([any_name, s.item, excluded]);
-                    item_bucket[s.item] = bucket;
-                    if (!(any_name in slot_index)) {
-                        slot_index[any_name] = Object.keys(slot_index).length;
+                    for (let i = 0; i < any_names.length; i++) {
+                        const any_name = any_names[i];
+                        const any_base = any_meta[i][0];
+                        const any_allowed = any_meta[i][1];
+                        if (_plan_regions(bucket).indexOf(any_base) < 0) continue;
+                        if (!is_all(s.classes) && !overlap(any_allowed, cls)) continue;
+                        const excluded = is_all(s.classes) ? 0 :
+                            countMissing(any_allowed, cls);
+                        keepRegion(regions, any_name, rankv, excluded, s.item, cname);
+                        item_bucket[s.item] = bucket;
+                        if (!(any_name in slot_index)) {
+                            slot_index[any_name] = Object.keys(slot_index).length;
+                        }
                     }
-                }
+                });
             });
-            if (choices.length === 0) {
+            if (Object.keys(regions).length === 0) {
                 noChoice.push(name);
                 return;
             }
-            names.push(name);
-            candidates.push(choices);
+            chain.forEach(function (cname) { rank_to_fam[cname] = name; });
+            fams.push(regions);
+            fams_name.push(name);
         });
-
-        function countMissing(allowedSet, clsSet) {
-            let n = 0;
-            allowedSet.forEach(function (c) { if (!clsSet.has(c)) n++; });
-            return n;
-        }
 
         const nslots = Object.keys(slot_index).length;
         const size = nslots ? 1 << nslots : 1;
@@ -345,21 +370,10 @@
             region_names[slot_index[bit]] = bit;
         });
 
-        // keep the least-excluding item per focus+region
-        const best_opt = candidates.map(function (choices) {
-            const m = {};
-            choices.forEach(function (c) {
-                const region = c[0], item = c[1], excluded = c[2];
-                const cur = m[region];
-                if (cur === undefined || excluded < cur[0]) m[region] = [excluded, item];
-            });
-            return m;
-        });
-
-        const max_opts = best_opt.reduce(function (mx, m) {
+        const max_opts = fams.reduce(function (mx, m) {
             return Math.max(mx, Object.keys(m).length);
         }, 1);
-        const scarce = best_opt.map((m) => max_opts - Object.keys(m).length + 1);
+        const scarce = fams.map((m) => max_opts - Object.keys(m).length + 1);
 
         function better(cand, cur) {
             return cand[0] > cur[0] ||
@@ -369,32 +383,25 @@
 
         // split forced vs free, keeping processing order
         const forced_names_set = new Set();
-        names.forEach(function (n) {
+        fams_name.forEach(function (n) {
             if (n in forced &&
                 new Set((effects[n].sources || []).map((s) => s.slot))
                     .has(_pin_slot(forced[n]))) {
                 forced_names_set.add(n);
             }
         });
-        const seq_names = [];
-        const seq_opt = [];
-        const seq_scarce = [];
-        names.forEach(function (n, i) {
-            if (forced_names_set.has(n)) {
-                seq_names.push(n); seq_opt.push(best_opt[i]); seq_scarce.push(scarce[i]);
-            }
-        });
-        names.forEach(function (n, i) {
-            if (!forced_names_set.has(n)) {
-                seq_names.push(n); seq_opt.push(best_opt[i]); seq_scarce.push(scarce[i]);
-            }
-        });
-        const forced_names = new Set(seq_names.filter((n) => forced_names_set.has(n)));
+        const order = [];
+        fams_name.forEach(function (n, i) { if (forced_names_set.has(n)) order.push(i); });
+        fams_name.forEach(function (n, i) { if (!forced_names_set.has(n)) order.push(i); });
+        const seq_name = order.map((i) => fams_name[i]);
+        const seq_opt = order.map((i) => fams[i]);
+        const seq_scarce = order.map((i) => scarce[i]);
+        const forced_names = seq_name.filter((n) => forced_names_set.has(n));
 
         // a pin must actually be honoured: restrict each forced effect to the
         // regions its pinned bucket covers, not every region it could use
-        const forced_regions = seq_names.map(function (name) {
-            if (!forced_names.has(name)) return null;
+        const forced_regions = seq_name.map(function (name) {
+            if (!forced_names_set.has(name)) return null;
             const regs = new Set();
             _plan_regions(_pin_slot(forced[name])).forEach(function (r) {
                 _slot_bits(r).forEach((b) => regs.add(b));
@@ -437,9 +444,10 @@
                     const bit = 1 << slot_index[region];
                     if (mask & bit) continue;
                     const nm = mask | bit;
+                    const entry = m[region];
                     const candCnt = dp.cnt[mask] + 1;
-                    const candScar = dp.scar[mask] + scarceVal;
-                    const candPen = dp.pen[mask] + m[region][0];
+                    const candScar = dp.scar[mask] + scarceVal + entry[0];
+                    const candPen = dp.pen[mask] + entry[1];
                     if (better([candCnt, candScar, candPen],
                             [ndp.cnt[nm], ndp.scar[nm], ndp.pen[nm]])) {
                         ndp.cnt[nm] = candCnt;
@@ -458,15 +466,21 @@
         function runDp(capture) {
             let dp = allocArrays();
             dp.cnt[0] = 0; dp.scar[0] = 0; dp.pen[0] = 0;
-            let par2 = capture ? seq_names.map(() => new Map()) : null;
+            let par2 = capture ? seq_name.map(() => new Map()) : null;
             let broken_forced = null;
-            for (let j = 0; j < seq_names.length; j++) {
-                const forced_step = j < forced_names.size;
+            for (let j = 0; j < seq_name.length; j++) {
+                const forced_step = j < forced_names.length;
                 let m = seq_opt[j];
-                if (forced_step && forced_regions[j] && forced_regions[j].size) {
+                if (forced_step) {
+                    // forced: only the pinned rank, and only regions of the
+                    // pinned bucket (forced_regions)
                     const filtered = {};
                     Object.keys(m).forEach(function (r) {
-                        if (forced_regions[j].has(r)) filtered[r] = m[r];
+                        const entry = m[r];
+                        if (entry[3] !== seq_name[j]) return;
+                        if (forced_regions[j] && forced_regions[j].size &&
+                            !forced_regions[j].has(r)) return;
+                        filtered[r] = entry;
                     });
                     m = filtered;
                 }
@@ -480,9 +494,9 @@
                         // forced pins mutually impossible -> degrade to free
                         dp = allocArrays();
                         dp.cnt[0] = 0; dp.scar[0] = 0; dp.pen[0] = 0;
-                        par2 = capture ? seq_names.map(() => new Map()) : null;
+                        par2 = capture ? seq_name.map(() => new Map()) : null;
                         broken_forced = new Set(forced_names);
-                        for (let j2 = 0; j2 < seq_names.length; j2++) {
+                        for (let j2 = 0; j2 < seq_name.length; j2++) {
                             dp = applyStep(dp, seq_opt[j2], seq_scarce[j2],
                                 j2, false, capture, par2);
                         }
@@ -510,7 +524,7 @@
                 const j = par.parStep[mask];
                 const region = region_names[par.parReg[mask]];
                 const entry = seq_opt[j][region];
-                plan.push([seq_names[j], item_bucket[entry[1]], region, entry[1], entry[0]]);
+                plan.push([entry[3], item_bucket[entry[2]], region, entry[2], entry[1]]);
                 mask = prev;
             }
             plan.reverse();
@@ -532,7 +546,7 @@
                 const prev = picked[1][0];
                 const region = region_names[picked[1][1]];
                 const entry = seq_opt[j][region];
-                plan.push([seq_names[j], item_bucket[entry[1]], region, entry[1], entry[0]]);
+                plan.push([entry[3], item_bucket[entry[2]], region, entry[2], entry[1]]);
                 mask = prev;
                 bound = j;
             }
@@ -557,10 +571,15 @@
         }
 
         const placed = new Set(plan.map((p) => p[0]));
+        const max_to_idx = {};
+        fams_name.forEach(function (n, i) { max_to_idx[n] = i; });
+        const placed_fams = new Set(plan.map(function (p) {
+            return rank_to_fam[p[0]] !== undefined ? rank_to_fam[p[0]] : p[0];
+        }));
         const not_honored = [];
         if (r.broken_forced) {
             r.broken_forced.forEach(function (n) {
-                if (!placed.has(n)) not_honored.push(n);
+                if (!placed_fams.has(n)) not_honored.push(n);
             });
         }
         const occupant = {};
@@ -569,16 +588,17 @@
             occupant[p[2]].push(p[0]);
         });
         const clashes = {};
-        names.forEach(function (n) {
-            if (placed.has(n)) return;
-            const opts = best_opt[names.indexOf(n)];
+        fams_name.forEach(function (n) {
+            if (placed_fams.has(n)) return;
+            const opts = fams[max_to_idx[n]];
             const only = Object.keys(opts).filter((r) => r in occupant);
             if (only.length) clashes[n] = only.map((r) => [r, occupant[r]]);
         });
         const why_here = {};
         plan.forEach(function (p) {
             if (!p[4]) return;
-            const opts = best_opt[names.indexOf(p[0])];
+            const idx = max_to_idx[rank_to_fam[p[0]] !== undefined ? rank_to_fam[p[0]] : p[0]];
+            const opts = fams[idx];
             const others = Object.keys(opts).filter((r) => r !== p[2]);
             const details = [];
             others.forEach(function (r) {
@@ -589,10 +609,10 @@
             why_here[p[0]] = details;
         });
         const stats = {
-            total: names.length + noChoice.length,
+            total: fams.length + noChoice.length,
             placed: plan.length,
             restricted: plan.filter((p) => p[4]).length,
-            conflicts: noChoice.concat(names.filter((n) => !placed.has(n))),
+            conflicts: noChoice.concat(fams_name.filter((n) => !placed_fams.has(n))),
             clashes: clashes,
             why_here: why_here,
             procs: procs,
@@ -615,6 +635,15 @@
         return best;
     }
 
+    function family_chain(all_effects, name) {
+        const list = [];
+        Object.keys(all_effects || {}).forEach(function (n) {
+            if (effect_family(n) === effect_family(name)) list.push(n);
+        });
+        list.sort(function (a, b) { return effect_rank(b) - effect_rank(a); });
+        return list;
+    }
+
     function optimize_plan(effects, chosen_names, trio, forced, gear_ok, any_slots,
             all_effects) {
         forced = forced || {};
@@ -627,51 +656,22 @@
                 if (!(n in pool)) pool[n] = all_effects[n];
             });
         }
-        const current = chosen_names.slice().sort(function (a, b) {
-            const cA = String((pool[a] && pool[a].category) || "");
-            const cB = String((pool[b] && pool[b].category) || "");
-            if (cA < cB) return -1;
-            if (cA > cB) return 1;
-            return a < b ? -1 : a > b ? 1 : 0;
-        });
-        const origin = {};
-        current.forEach((n) => { origin[n] = n; });
-        function pinned(n) {
-            return (n in forced) &&
-                new Set((pool[n] && pool[n].sources || []).map((s) => s.slot))
-                    .has(_pin_slot(forced[n]));
-        }
-        let res = optimizeOnce(pool, current, trio, forced, gear_ok, any_slots);
-        while (true) {
-            const placed = new Set(res.plan.map((p) => p[0]));
-            let lower = -1;
-            let target = null;
-            for (let i = 0; i < current.length; i++) {
-                const n = current[i];
-                if (placed.has(n)) continue;
-                if (pinned(n)) continue;
-                const cand = lower_rank_name(all_effects, n);
-                if (cand !== null) { lower = i; target = cand; break; }
+        const res = optimizeOnce(pool, chosen_names, trio, forced, gear_ok,
+            any_slots, all_effects);
+        // report which placed tiers fall below what the player actually asked for
+        const fam_max = {};
+        Object.keys(pool).forEach(function (n) {
+            const f = effect_family(n);
+            if (fam_max[f] === undefined ||
+                effect_rank(n) > effect_rank(fam_max[f])) {
+                fam_max[f] = n;
             }
-            if (lower < 0) break;
-            origin[target] = origin[current[lower]];
-            delete origin[current[lower]];
-            current[lower] = target;
-            res = optimizeOnce(pool, current, trio, forced, gear_ok, any_slots);
-        }
-        res.stats.conflicts = res.stats.conflicts.map(function (n) {
-            return origin[n] !== undefined ? origin[n] : n;
         });
-        if (res.stats.clashes) {
-            const c2 = {};
-            Object.keys(res.stats.clashes).forEach(function (k) {
-                c2[origin[k] !== undefined ? origin[k] : k] = res.stats.clashes[k];
-            });
-            res.stats.clashes = c2;
-        }
         const fell_back = {};
-        Object.keys(origin).forEach(function (n) {
-            if (origin[n] !== n) fell_back[n] = origin[n];
+        res.plan.forEach(function (row) {
+            const want = fam_max[effect_family(row[0])] !== undefined
+                ? fam_max[effect_family(row[0])] : row[0];
+            if (want !== row[0]) fell_back[row[0]] = want;
         });
         res.stats.fell_back = fell_back;
         return res;
