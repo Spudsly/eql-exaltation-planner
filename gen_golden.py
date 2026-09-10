@@ -66,6 +66,8 @@ def stats_payload(stats):
         "clashes": stats["clashes"],
         "why_here": stats["why_here"],
         "fell_back": stats.get("fell_back", {}),
+        "high_total": stats.get("high_total", 0),
+        "high_placed": stats.get("high_placed", 0),
     }
 
 
@@ -144,6 +146,25 @@ def main():
         })
     print("tier3 scenarios: {} in {:.1f}s".format(
         4 * len(BROAD_TRIOS), time.time() - t0))
+
+    # Tier 4: two-tier priority — a handful of "highest priority" goals that
+    # must not be downgraded to make room for the useful remainder.
+    t0 = time.time()
+    for trio in BROAD_TRIOS:
+        effects, fx = build_full(data, trio)
+        chosen = sorted_names(effects)
+        n = min(13, len(chosen))
+        chosen = chosen[:n]
+        high = set(chosen[:3])
+        plan, stats = planner.optimize_plan(
+            effects, chosen, trio, all_effects=fx, high_priority=high)
+        golden["scenarios"].append({
+            "trio": trio, "chosen": chosen, "gear_ok": None, "any_slots": None,
+            "forced": None, "high_priority": sorted(high),
+            "plan": sorted_rows(plan), "stats": stats_payload(stats),
+        })
+    print("tier4 scenarios: {} in {:.1f}s".format(
+        len(BROAD_TRIOS), time.time() - t0))
 
     # Tier 1: the desktop smoke's own expectations.
     effects, fx = build_full(data, ["CLR", "DRU", "SHM"])

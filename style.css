@@ -243,6 +243,7 @@ main {
 }
 .effect-row:hover .effect-name { color: var(--accent); }
 .effect-row .check-box { font-size: 14px; width: 14px; text-align: center; flex: none; }
+.effect-row .star-box { font-size: 12px; width: 12px; text-align: center; flex: none; cursor: pointer; }
 .effect-name { flex: 1; font-size: 12px; }
 
 /* build list */
@@ -276,6 +277,7 @@ main {
 /* plan text */
 .plan-row { color: var(--fg); }
 .plan-slot { color: var(--gold); font-weight: bold; }
+.plan-star { color: var(--gold); font-size: 12px; }
 .plan-item { color: var(--fg); }
 .plan-note { color: var(--accent); font-weight: bold; }
 .plan-why { color: var(--muted); }

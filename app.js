@@ -33,6 +33,8 @@
     let gearVars = {};
     let anySel = { "ANY 1": "", "ANY 2": "" };
     let anyVars = { "ANY 1": {}, "ANY 2": {} };
+    let highVars = {};
+    let currentHighSet = new Set();
 
     const gearBody = $("#gearBody");
     const checkBody = $("#checkBody");
@@ -301,11 +303,23 @@
             members.forEach((n) => {
                 const row = document.createElement("div");
                 row.className = "effect-row";
+                const star = document.createElement("span");
+                star.className = "star-box";
+                star.textContent = highVars[n] ? "\u2605" : "\u2606";
+                star.style.color = highVars[n] ? "var(--gold)" : "var(--muted)";
+                star.addEventListener("click", (ev) => {
+                    ev.stopPropagation();
+                    highVars[n] = !highVars[n];
+                    star.textContent = highVars[n] ? "\u2605" : "\u2606";
+                    star.style.color = highVars[n] ? "var(--gold)" : "var(--muted)";
+                    autoRefreshPlan();
+                });
                 const box = document.createElement("span");
                 box.className = "check-box";
                 const nm = document.createElement("span");
                 nm.className = "effect-name";
                 nm.textContent = n;
+                row.appendChild(star);
                 row.appendChild(box);
                 row.appendChild(nm);
                 row.addEventListener("click", () => {
@@ -506,12 +520,15 @@
         }
         let plan, stats;
         try {
+            const highSet = Object.keys(highVars).filter((n) => highVars[n] && checkVars[n]);
+            currentHighSet = new Set(highSet);
             const result = Planner.optimize_plan(
                 effects, chosen, t.slice(),
                 Object.keys(itemChoices).length ? Object.assign({}, itemChoices) : null,
                 gearOk(),
                 anySlots(),
                 effectsAll,
+                highSet.length ? highSet : null,
             );
             plan = result.plan;
             stats = result.stats;
@@ -541,6 +558,9 @@
         for (const [effect, bucket, region, item, excluded] of rows) {
             const line = document.createElement("div");
             line.className = "plan-row";
+            if (currentHighSet.has(effect)) {
+                line.appendChild(el("span", "plan-star", "\u2605 "));
+            }
             const slot = el("span", "plan-slot",
                 pad(Planner.GEAR_LABEL[region] || region, 12));
             line.appendChild(slot);

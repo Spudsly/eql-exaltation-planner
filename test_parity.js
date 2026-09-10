@@ -71,6 +71,8 @@ function statsPayload(stats) {
         clashes: stats.clashes,
         why_here: stats.why_here,
         fell_back: stats.fell_back,
+        high_total: stats.high_total,
+        high_placed: stats.high_placed,
     };
 }
 
@@ -83,6 +85,7 @@ function runScenario(data, sc) {
         sc.gear_ok && JSON.parse(JSON.stringify(sc.gear_ok)),
         sc.any_slots && JSON.parse(JSON.stringify(sc.any_slots)),
         buildFx(data, trio),
+        sc.high_priority && JSON.parse(JSON.stringify(sc.high_priority)),
     );
     return sortedRows(out.plan);
 }
@@ -137,6 +140,7 @@ for (const sc of golden.scenarios) {
         sc.gear_ok && JSON.parse(JSON.stringify(sc.gear_ok)),
         sc.any_slots && JSON.parse(JSON.stringify(sc.any_slots)),
         buildFx(data, trio.slice()),
+        sc.high_priority && JSON.parse(JSON.stringify(sc.high_priority)),
     );
     const gotPlan = sortedRows(result.plan);
     const expectPlan = sc.plan;

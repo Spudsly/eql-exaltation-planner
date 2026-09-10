@@ -256,7 +256,7 @@
     }
 
     function optimizeOnce(effects, chosen_names, trio, forced, gear_ok, any_slots,
-            all_effects) {
+            all_effects, high_priority) {
         forced = forced || {};
         gear_ok = gear_ok || {};
         const trio_set = new Set(trio);
@@ -376,9 +376,27 @@
         const scarce = fams.map((m) => max_opts - Object.keys(m).length + 1);
 
         function better(cand, cur) {
+            // cand/cur are 5-tuples (hit count, hit tier, useful count,
+            // useful tier, class penalty); lexicographic like planner.py.
             return cand[0] > cur[0] ||
                 (cand[0] === cur[0] && cand[1] > cur[1]) ||
-                (cand[0] === cur[0] && cand[1] === cur[1] && cand[2] < cur[2]);
+                (cand[0] === cur[0] && cand[1] === cur[1] && cand[2] > cur[2]) ||
+                (cand[0] === cur[0] && cand[1] === cur[1] && cand[2] === cur[2] &&
+                 cand[3] > cur[3]) ||
+                (cand[0] === cur[0] && cand[1] === cur[1] && cand[2] === cur[2] &&
+                 cand[3] === cur[3] && cand[4] < cur[4]);
+        }
+
+        function stepCandidate(cnt, scar, mcnt, mscar, pen, scarceVal, entry, high) {
+            // value of placing one family's option onto a state: a high-
+            // priority family gains the primary bucket, a useful one the
+            // secondary bucket.
+            if (high) {
+                return [cnt + 1, scar + scarceVal + entry[0], mcnt, mscar,
+                    pen + entry[1]];
+            }
+            return [cnt, scar, mcnt + 1, mscar + scarceVal + entry[0],
+                pen + entry[1]];
         }
 
         // split forced vs free, keeping processing order
@@ -396,6 +414,8 @@
         const seq_name = order.map((i) => fams_name[i]);
         const seq_opt = order.map((i) => fams[i]);
         const seq_scarce = order.map((i) => scarce[i]);
+        const high_names = new Set(high_priority || []);
+        const seq_high = seq_name.map((n) => high_names.has(n));
         const forced_names = seq_name.filter((n) => forced_names_set.has(n));
 
         // a pin must actually be honoured: restrict each forced effect to the
@@ -413,6 +433,8 @@
             return {
                 cnt: new Int32Array(size).fill(NEG_CNT),
                 scar: new Int32Array(size).fill(NEG_CNT),
+                mcnt: new Int32Array(size).fill(NEG_CNT),
+                mscar: new Int32Array(size).fill(NEG_CNT),
                 pen: new Int32Array(size).fill(1000000000),
                 parMask: new Int32Array(size).fill(-1),
                 parStep: new Int16Array(size).fill(-1),
@@ -423,6 +445,8 @@
             return {
                 cnt: new Int32Array(src.cnt),
                 scar: new Int32Array(src.scar),
+                mcnt: new Int32Array(src.mcnt),
+                mscar: new Int32Array(src.mscar),
                 pen: new Int32Array(src.pen),
                 parMask: new Int32Array(src.parMask),
                 parStep: new Int16Array(src.parStep),
@@ -430,7 +454,7 @@
             };
         }
 
-        function applyStep(dp, m, scarceVal, j, forceOnly, capture, par2) {
+        function applyStep(dp, m, scarceVal, j, forceOnly, capture, par2, high) {
             // reads old `dp`, writes fresh `ndp` (copy semantics, matching the
             // Python ndp = dp[:] so one effect's regions never chain together).
             // Loop order mirrors Python: mask outermost, regions innermost,
@@ -445,14 +469,16 @@
                     if (mask & bit) continue;
                     const nm = mask | bit;
                     const entry = m[region];
-                    const candCnt = dp.cnt[mask] + 1;
-                    const candScar = dp.scar[mask] + scarceVal + entry[0];
-                    const candPen = dp.pen[mask] + entry[1];
-                    if (better([candCnt, candScar, candPen],
-                            [ndp.cnt[nm], ndp.scar[nm], ndp.pen[nm]])) {
-                        ndp.cnt[nm] = candCnt;
-                        ndp.scar[nm] = candScar;
-                        ndp.pen[nm] = candPen;
+                    const cand = stepCandidate(dp.cnt[mask], dp.scar[mask],
+                        dp.mcnt[mask], dp.mscar[mask], dp.pen[mask],
+                        scarceVal, entry, high);
+                    if (better(cand, [ndp.cnt[nm], ndp.scar[nm], ndp.mcnt[nm],
+                            ndp.mscar[nm], ndp.pen[nm]])) {
+                        ndp.cnt[nm] = cand[0];
+                        ndp.scar[nm] = cand[1];
+                        ndp.mcnt[nm] = cand[2];
+                        ndp.mscar[nm] = cand[3];
+                        ndp.pen[nm] = cand[4];
                         ndp.parMask[nm] = mask;
                         ndp.parStep[nm] = j;
                         ndp.parReg[nm] = slot_index[region];
@@ -465,7 +491,8 @@
 
         function runDp(capture) {
             let dp = allocArrays();
-            dp.cnt[0] = 0; dp.scar[0] = 0; dp.pen[0] = 0;
+            dp.cnt[0] = 0; dp.scar[0] = 0;
+            dp.mcnt[0] = 0; dp.mscar[0] = 0; dp.pen[0] = 0;
             let par2 = capture ? seq_name.map(() => new Map()) : null;
             let broken_forced = null;
             for (let j = 0; j < seq_name.length; j++) {
@@ -484,7 +511,7 @@
                     });
                     m = filtered;
                 }
-                dp = applyStep(dp, m, seq_scarce[j], j, forced_step, capture, par2);
+                dp = applyStep(dp, m, seq_scarce[j], j, forced_step, capture, par2, seq_high[j]);
                 if (forced_step) {
                     let allNeg = true;
                     for (let x = 0; x < size; x++) {
@@ -493,12 +520,13 @@
                     if (allNeg) {
                         // forced pins mutually impossible -> degrade to free
                         dp = allocArrays();
-                        dp.cnt[0] = 0; dp.scar[0] = 0; dp.pen[0] = 0;
+                        dp.cnt[0] = 0; dp.scar[0] = 0;
+                        dp.mcnt[0] = 0; dp.mscar[0] = 0; dp.pen[0] = 0;
                         par2 = capture ? seq_name.map(() => new Map()) : null;
                         broken_forced = new Set(forced_names);
                         for (let j2 = 0; j2 < seq_name.length; j2++) {
                             dp = applyStep(dp, seq_opt[j2], seq_scarce[j2],
-                                j2, false, capture, par2);
+                                j2, false, capture, par2, seq_high[j2]);
                         }
                         break;
                     }
@@ -506,11 +534,18 @@
             }
             let best = 0;
             for (let mask = 1; mask < size; mask++) {
-                const cBest = dp.cnt[best], sBest = dp.scar[best], pBest = dp.pen[best];
-                const cM = dp.cnt[mask], sM = dp.scar[mask], pM = dp.pen[mask];
+                const cBest = dp.cnt[best], sBest = dp.scar[best];
+                const mBest = dp.mcnt[best], msBest = dp.mscar[best];
+                const pBest = dp.pen[best];
+                const cM = dp.cnt[mask], sM = dp.scar[mask];
+                const mM = dp.mcnt[mask], msM = dp.mscar[mask];
+                const pM = dp.pen[mask];
                 const gt = cM > cBest ||
                     (cM === cBest && sM > sBest) ||
-                    (cM === cBest && sM === sBest && pM < pBest);
+                    (cM === cBest && sM === sBest && mM > mBest) ||
+                    (cM === cBest && sM === sBest && mM === mBest && msM > msBest) ||
+                    (cM === cBest && sM === sBest && mM === mBest && msM === msBest &&
+                     pM < pBest);
                 if (gt) best = mask;
             }
             return { dp: dp, best: best, broken_forced: broken_forced, par2: par2 };
@@ -558,14 +593,14 @@
         let plan = rebuild(r.dp, r.best);
         const names_in_plan = plan.map((p) => p[0]);
         if (new Set(names_in_plan).size !== names_in_plan.length ||
-            plan.length !== r.dp.cnt[r.best]) {
+            plan.length !== r.dp.cnt[r.best] + r.dp.mcnt[r.best]) {
             r = runDp(true);
             plan = rebuildStrict(r.par2, r.best);
             const strict_names = plan.map((p) => p[0]);
             if (new Set(strict_names).size !== strict_names.length) {
                 throw new Error("plan places an effect twice");
             }
-            if (plan.length !== r.dp.cnt[r.best]) {
+            if (plan.length !== r.dp.cnt[r.best] + r.dp.mcnt[r.best]) {
                 throw new Error("plan length does not match optimal count");
             }
         }
@@ -617,6 +652,11 @@
             why_here: why_here,
             procs: procs,
             not_honored: not_honored,
+            high_total: fams_name.filter((n) => high_names.has(n)).length,
+            high_placed: plan.filter(function (p) {
+                const f = rank_to_fam[p[0]] !== undefined ? rank_to_fam[p[0]] : p[0];
+                return high_names.has(f);
+            }).length,
         };
         return { plan: plan, stats: stats };
     }
@@ -645,10 +685,11 @@
     }
 
     function optimize_plan(effects, chosen_names, trio, forced, gear_ok, any_slots,
-            all_effects) {
+            all_effects, high_priority) {
         forced = forced || {};
         gear_ok = gear_ok || {};
         all_effects = all_effects || null;
+        high_priority = high_priority || null;
         const pool = {};
         Object.keys(effects).forEach((n) => { pool[n] = effects[n]; });
         if (all_effects) {
@@ -657,7 +698,7 @@
             });
         }
         const res = optimizeOnce(pool, chosen_names, trio, forced, gear_ok,
-            any_slots, all_effects);
+            any_slots, all_effects, high_priority);
         // report which placed tiers fall below what the player actually asked for
         const fam_max = {};
         Object.keys(pool).forEach(function (n) {
