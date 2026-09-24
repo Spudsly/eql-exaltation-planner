@@ -660,6 +660,25 @@
         window.open(DONATE_URL, "_blank", "noopener");
     });
 
+    // ------------------------------------------------------------- tabs
+    const tabExaltBtn = $("#tabExaltBtn");
+    const tabMoteBtn = $("#tabMoteBtn");
+    const tabExaltPage = $("#tabExaltPage");
+    const tabMotePage = $("#tabMotePage");
+    function showTab(which) {
+        const exalt = which === "exalt";
+        tabExaltPage.hidden = !exalt;
+        tabMotePage.hidden = exalt;
+        tabExaltBtn.classList.toggle("active", exalt);
+        tabMoteBtn.classList.toggle("active", !exalt);
+        if (location.hash !== "#" + which) {
+            try { history.replaceState(null, "", "#" + which); } catch (e) { /* ok */ }
+        }
+    }
+    tabExaltBtn.addEventListener("click", () => showTab("exalt"));
+    tabMoteBtn.addEventListener("click", () => showTab("mote"));
+    showTab(location.hash === "#mote" ? "mote" : "exalt");
+
     clearPlan();
     setStatus("Loading data\u2026");
     fetch("data/eql_focus_effects.json")

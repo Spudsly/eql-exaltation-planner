@@ -4,7 +4,7 @@
   "private": true,
   "description": "Static web port of the EQ Legends Exaltation Planner",
   "scripts": {
-    "test": "node test_parity.js && node test_web.js",
+    "test": "node test_parity.js && node test_web.js && node test_mote.js",
     "gen-golden": "python gen_golden.py"
   },
   "devDependencies": {

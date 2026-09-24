@@ -3,56 +3,95 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EQ Legends Exaltation Planner</title>
+<title>EQ Legends Planner</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>EQ Legends Exaltation Planner</h1>
+    <h1>EQ Legends Planner</h1>
+    <nav id="tabs">
+      <button id="tabExaltBtn" class="tabbtn active" type="button">Exaltations</button>
+      <button id="tabMoteBtn" class="tabbtn" type="button">Mote optimizer</button>
+    </nav>
     <div id="status"></div>
     <a id="donate" href="https://buymeacoffee.com/spudsly" target="_blank" rel="noopener">&#9749; Buy me a coffee</a>
   </header>
 
-  <div id="picker">
-    <span class="picker-label">Class trio:</span>
-    <select id="trio0"></select>
-    <select id="trio1"></select>
-    <select id="trio2"></select>
-    <button id="loadBtn" type="button">Load effects</button>
-    <span class="picker-spacer"></span>
-    <button id="checkAllBtn" type="button">Check all</button>
-    <button id="checkNoneBtn" type="button">Uncheck all</button>
+  <div id="tabExaltPage" class="page">
+    <div id="picker">
+      <span class="picker-label">Class trio:</span>
+      <select id="trio0"></select>
+      <select id="trio1"></select>
+      <select id="trio2"></select>
+      <button id="loadBtn" type="button">Load effects</button>
+      <span class="picker-spacer"></span>
+      <button id="checkAllBtn" type="button">Check all</button>
+      <button id="checkNoneBtn" type="button">Uncheck all</button>
+    </div>
+
+    <main>
+      <section id="gearPane" class="pane">
+        <div class="pane-title">Gear slot class restrictions</div>
+        <div id="gearBody" class="pane-body"></div>
+      </section>
+
+      <section id="checkPane" class="pane grow">
+        <div class="pane-title">Desired focus effects</div>
+        <div id="checkBody" class="pane-body"></div>
+      </section>
+
+      <section id="buildPane" class="pane grow">
+        <div class="pane-title">Force specific choice</div>
+        <div id="buildBody" class="pane-body"></div>
+      </section>
+
+      <section id="planPane" class="pane">
+        <div class="pane-title" id="planTitle">Best path</div>
+        <button id="clearPlanBtn" type="button" title="Clear plan">&#10005;</button>
+        <div id="planBody" class="pane-body monospace"></div>
+      </section>
+    </main>
   </div>
 
-  <main>
-    <section id="gearPane" class="pane">
-      <div class="pane-title">Gear slot class restrictions</div>
-      <div id="gearBody" class="pane-body"></div>
+  <div id="tabMotePage" class="page" hidden>
+    <section id="moteFormPane" class="pane">
+      <div class="pane-title">Power-up plan</div>
+      <div id="moteForm" class="pane-body">
+        <div class="mote-row">
+          <span class="gear-name">From +</span>
+          <select id="startLevel"></select>
+          <span class="gear-name">to +</span>
+          <select id="targetLevel"></select>
+        </div>
+        <div class="mote-row">
+          <span class="gear-name">points into starting level:</span>
+          <input id="startCarry" type="number" min="0" step="1" value="0">
+          <span class="mote-hint" id="startCarryMax">points</span>
+        </div>
+        <div class="mote-hint">Points carry across levels; while at +L only motes of quality &gt; L can be used.</div>
+        <div class="inventory-head">Mote inventory <span class="any-note">how many of each you have</span></div>
+        <div id="invRows"></div>
+        <div class="mote-buttons">
+          <button id="clearInvBtn" type="button">Clear</button>
+        </div>
+      </div>
     </section>
 
-    <section id="checkPane" class="pane grow">
-      <div class="pane-title">Desired focus effects</div>
-      <div id="checkBody" class="pane-body"></div>
+    <section id="moteOutPane" class="pane grow">
+      <div class="pane-title" id="moteOutTitle">Ways</div>
+      <div id="moteBody" class="pane-body monospace"></div>
     </section>
-
-    <section id="buildPane" class="pane grow">
-      <div class="pane-title">Force specific choice</div>
-      <div id="buildBody" class="pane-body"></div>
-    </section>
-
-    <section id="planPane" class="pane">
-      <div class="pane-title" id="planTitle">Best path</div>
-      <button id="clearPlanBtn" type="button" title="Clear plan">&#10005;</button>
-      <div id="planBody" class="pane-body monospace"></div>
-    </section>
-  </main>
+  </div>
 
   <footer>
-    One focus per equipment slot &middot; ear / ring / wrist pairs are independent &middot;
-    PRIM or SECONDARY both work &middot; BEST: either weapon hand
+    Exaltations: one focus per equipment slot &middot; ear / ring / wrist pairs are independent &middot;
+    PRIM or SECONDARY both work &middot; BEST: either weapon hand.
+    &nbsp;&nbsp;Motes: 1:Infinitesimal=1, 2:Minor=1, 3:Lesser=2, 4:Potential=4, 5:Major=5,
+    6:Greater=6, 7:Superior=7, 8:Grand=8, 9:Ascendant=9, 10:Infinite=10.
   </footer>
 
   <script src="planner.js"></script>
+  <script src="mote.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

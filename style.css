@@ -14,6 +14,8 @@
 
 * { box-sizing: border-box; }
 
+[hidden] { display: none !important; }
+
 html, body {
   margin: 0;
   height: 100%;
@@ -66,6 +68,37 @@ h1 {
 #donate:hover {
   background: var(--gold);
   color: var(--bg);
+}
+
+#tabs {
+  flex: none;
+  display: flex;
+  gap: 4px;
+}
+.tabbtn {
+  background: var(--panel2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.tabbtn:hover { background: var(--panel3); }
+.tabbtn.active {
+  background: var(--gold);
+  color: #1c1606;
+  border-color: var(--gold);
+  font-weight: bold;
+}
+
+/* tab pages */
+.page {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 #picker {
@@ -272,6 +305,176 @@ main {
   text-align: center;
   margin: 26px 14px;
   font-size: 12px;
+}
+
+/* mote optimizer */
+#moteFormPane { width: 360px; }
+#tabMotePage { flex-direction: row; }
+#moteOutPane { width: auto; min-width: 0; }
+.mote-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.mote-row select {
+  background: var(--panel3);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 3px 6px;
+}
+.mote-row .gear-name { font-weight: bold; color: var(--gold); font-size: 12px; }
+.mote-hint {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 2px 0 8px;
+}
+.inventory-head {
+  color: var(--gold);
+  font-weight: bold;
+  margin: 8px 0 4px;
+  font-size: 13px;
+}
+.inv-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+.inv-row .q-name {
+  flex: 1;
+  color: var(--fg);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.inv-row .q-pts {
+  width: 86px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.inv-row input[type="number"] {
+  width: 60px;
+  flex: none;
+  background: var(--panel3);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+.mote-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+#clearInvBtn {
+  background: var(--panel2);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+#clearInvBtn:hover { background: var(--panel3); }
+
+#moteOutPane { width: auto; }
+.mote-summary { color: var(--muted); margin-bottom: 8px; }
+.way-card {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+.way-head { color: var(--gold); font-weight: bold; margin-bottom: 4px; }
+.way-step { font-size: 12px; }
+.way-lvl { color: var(--muted); }
+.way-parts { color: var(--fg); }
+.way-spent { color: var(--green); }
+.way-left { color: var(--muted); font-size: 11px; margin-top: 3px; }
+
+/* roadmap bars: one row per level, final level on top */
+.road-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 6px 0;
+}
+.legend-item { display: inline-flex; align-items: center; gap: 4px; }
+.legend-swatch {
+  width: 16px; height: 16px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+.q-icon {
+  width: 20px; height: 20px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  margin-right: 6px;
+  vertical-align: middle;
+  flex: none;
+}
+.roadmap { margin: 0; }
+.road-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+.road-label {
+  flex: none;
+  width: 64px;
+  font-size: 12px;
+  color: var(--accent);
+  text-align: right;
+  font-weight: bold;
+}
+.road-row:first-child .road-label { color: var(--gold); font-weight: bold; }
+.road-track {
+  flex: none;
+  width: 370px;
+  max-width: 48%;
+  display: flex;
+  height: 26px;
+  background: var(--panel3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.road-seg { height: 100%; display: flex; align-items: center; min-width: 0; }
+.road-tag {
+  font-size: 13px;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+  pointer-events: none;
+}
+.road-seg.carry {
+  background: #4a5260;
+  border-right: 1px solid var(--border);
+  opacity: .85;
+}
+.road-desc {
+  flex: 1 1 auto;
+  font-size: 13px;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.way-alts { font-size: 12px; margin-top: 4px; color: var(--muted); }
+.way-alts summary { cursor: pointer; color: var(--accent); }
+.way-alternate {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 2px 0 2px 16px;
 }
 
 /* plan text */
