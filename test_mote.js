@@ -121,6 +121,34 @@ function validate(res, start, target, inv, carried) {
     }
     check(sorted, "ways sorted: q6+ count, then remaining high-tier stock descending");
 
+    // generator is rank-ordered: a capped call must still return the true
+    // best plans, not "best of whatever got enumerated first". Regression for
+    // the +0 -> +1 / q2-vs-q1 case where the space (131k) exceeds the cap.
+    {
+        const inv = { 1: 5, 2: 5, 3: 5, 4: 5, 5: 10, 6: 10, 7: 5, 8: 5 };
+        const res = Mote.findWays(0, 6, inv);
+        check(res.ok && res.total === 131108,
+            "0 -> +6 sample enumerates the whole space under the default cap");
+        check(res.ways[0].used[1] === 1 && res.ways[0].used[2] === 2,
+            "top 0 -> +6 plan burns the Infinitesimal at +0 -> +1");
+        const findCard = (u1, u2) => res.ways.find((w) =>
+            w.used[1] === u1 && w.used[2] === u2 && w.used[3] === 3 &&
+            w.used[4] === 2 && w.used[5] === 4 && w.used[7] === 4);
+        const q2card = findCard(0, 1), q1card = findCard(1, 0);
+        check(!!q1card && !!q2card,
+            "both the q1 and q2 variants of the exact full 0 -> +6 lot are returned");
+        check(res.ways.indexOf(q2card) > res.ways.indexOf(q1card),
+            "spending the q1 (keeping the Minor) outranks spending the Minor");
+        const full = Mote.findWays(0, 6, inv, { maxStored: 1e7, showLimit: 1e7 });
+        let match = full.ways.length >= res.ways.length;
+        for (let i = 0; match && i < res.ways.length; i++) {
+            for (let q = 1; q <= 10; q++) {
+                if (res.ways[i].used[q] !== full.ways[i].used[q]) { match = false; break; }
+            }
+        }
+        check(match, "the default-capped top plans are exactly the globally best ones");
+    }
+
     // big appetite: q6+ motes are unavoidable and should still be minimized
     const inv2 = { 1: 4, 2: 4, 3: 4, 4: 4, 5: 6, 6: 20, 7: 20, 8: 20, 10: 20 };
     const r2 = Mote.findWays(0, 8, inv2);

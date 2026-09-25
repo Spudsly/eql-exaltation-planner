@@ -213,6 +213,13 @@ new Promise((res) => setTimeout(res, 20)).then(() => {
         "the top (final) row spells out its feed and points");
     check(/^\+\d/.test(firstCard.querySelector(".roadmap .road-label").textContent),
         "the top row label is the final level transition");
+    const tgt = $("#targetLevel");
+    tgt.value = "6";
+    tgt.dispatchEvent(new window.Event("change"));
+    const card6 = $("#moteBody").querySelector(".way-card");
+    const row0 = card6.querySelectorAll(".road-row")[card6.querySelectorAll(".road-row").length - 1];
+    check(/Infinitesimal/.test(row0.querySelector(".road-desc").textContent),
+        "top-ranked 0 -> +6 plan spends the Infinitesimal at +0 -> +1");
     check(firstCard.querySelector(".road-legend") === null &&
         $("#moteBody").querySelector(".road-legend") !== null,
         "color legend rendered above the grouped ways");

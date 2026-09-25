@@ -175,9 +175,9 @@
     function findWays(start, target, inventory, opts) {
         opts = opts || {};
         const wasteCap = (opts.maxWasteTotal !== undefined ? opts.maxWasteTotal : 128);
-        const maxStored = opts.maxStored || 50000;
+        const maxStored = opts.maxStored || 200000;
         const showLimit = opts.showLimit || 50;
-        const nodeCap = opts.nodeCap || 5000000;
+        const nodeCap = opts.nodeCap || 20000000;
 
         const inv = new Array(MAX_LEVEL + 1).fill(0);
         let totalPts = 0;
@@ -217,38 +217,107 @@
 
         // Enumerate distinct feed-lots (counts per quality, fed lowest quality
         // first) whose net fed points land in [totalLower, totalUpper].
+        //
+        // The results are produced in cmpRank order, so a capped run returns
+        // the truly best lots instead of "best of whatever happened to be
+        // enumerated first": within each waste class the comparator is
+        // (fewer q6+ motes, then lexicographically spend fewer higher-tier
+        // motes), which is exactly the order of a depth-first walk that
+        // decides q10 first and tries each count from 0 up, bucket by bucket.
+        // We can therefore stop as soon as maxStored lots are gathered.
+        //
+        // Windows (a mote of quality q is legal only while cumulative-before
+        // < CUM[q]) are verified bottom-up at each leaf, mirroring the
+        // ascending feed; the band and an aggregate window cap from the
+        // decided upper tiers keep the walk tight.
         function search(totalLower, totalUpper) {
             const found = [];
             const budget = { nodes: 0, cut: false };
             const used = new Array(MAX_LEVEL + 1).fill(0);
-            const maxRemain = new Array(MAX_LEVEL + 2).fill(0);
-            for (let q = MAX_LEVEL; q >= 1; q--) {
-                maxRemain[q] = maxRemain[q + 1] + inv[q] * VALUES[q];
+            let totalPts = 0;
+            const prefixPts = new Array(MAX_LEVEL + 2).fill(0);
+            let sumHighInv = 0;
+            for (let q = 1; q <= MAX_LEVEL; q++) {
+                prefixPts[q] = prefixPts[q - 1] + inv[q] * VALUES[q];
+                if (q >= 6) sumHighInv += inv[q];
             }
-            let fed = 0;   // net points fed so far
-            function rec(q) {
+            const wasteFreeMax = Math.min(totalUpper, CUM[MAX_LEVEL] - 1 - cum0);
+            const band = { L: totalLower, U: totalUpper };
+
+            function ok(total) {
+                let cum = cum0;
+                for (let q = 1; q <= MAX_LEVEL; q++) {
+                    const c = used[q];
+                    if (!c) continue;
+                    if (cum >= CUM[q] || c > windowFits(q, cum)) return false;
+                    cum += c * VALUES[q];
+                }
+                return cum === cum0 + total;
+            }
+
+            // Decide qualities from MAX_LEVEL down to 1, counts ascending, so
+            // leaves arrive in lexicographic order of the used-vector. `hLeft`
+            // is the remaining q6+ budget of the bucket. Band + window cap of
+            // decided upper tiers prune the walk.
+            function rec(q, hLeft) {
+                if (budget.cut || found.length >= maxStored) return;
                 budget.nodes++;
                 if (budget.nodes > nodeCap) { budget.cut = true; return; }
-                if (found.length >= maxStored) return;
-                if (q > MAX_LEVEL) {
-                    if (fed >= totalLower) found.push({ used: used.slice() });
+                if (q < 1) {
+                    if (hLeft === 0 && totalPts >= band.L && totalPts <= band.U && ok(totalPts)) {
+                        found.push({ used: used.slice() });
+                    }
                     return;
                 }
-                if (fed > totalUpper) return;
-                if (fed + maxRemain[q] < totalLower) return;
-                const maxC = Math.min(inv[q], windowFits(q, cum0 + fed),
-                    (totalUpper - fed) / VALUES[q] | 0);
-                for (let c = 0; c <= maxC; c++) {
-                    if (c) { used[q] += c; fed += c * VALUES[q]; }
-                    rec(q + 1);
-                    if (budget.cut || found.length >= maxStored) {
-                        if (c) { used[q] -= c; fed -= c * VALUES[q]; }
-                        return;
-                    }
-                    if (c) { used[q] -= c; fed -= c * VALUES[q]; }
+                if (totalPts > band.U) return;
+                if (totalPts + prefixPts[q] < band.L) return;
+
+                // caps: band, and the window of decided higher tiers
+                const capBelow = Math.min(band.U - totalPts, prefixPts[q]);
+                let capByWindow = Infinity;
+                for (let r = MAX_LEVEL; r > q; r--) {
+                    if (!used[r]) continue;
+                    let mid = 0;
+                    for (let s = q + 1; s < r; s++) mid += used[s] * VALUES[s];
+                    const rem = (CUM[r] - 1 - cum0 - (used[r] - 1) * VALUES[r]) - mid;
+                    if (rem < capByWindow) capByWindow = rem;
+                }
+                if (Math.max(0, band.L - totalPts) > Math.min(capBelow, capByWindow)) return;
+
+                if (q <= start || cum0 >= CUM[q]) { rec(q - 1, hLeft); return; }  // windows force 0
+                let cMax = Math.min(inv[q], Math.floor((band.U - totalPts) / VALUES[q]));
+                if (q >= 6) cMax = Math.min(cMax, hLeft);
+                if (cMax === 0) { rec(q - 1, hLeft); return; }
+                for (let c = 0; c <= cMax; c++) {
+                    if (c) { used[q] += c; totalPts += c * VALUES[q]; }
+                    rec(q - 1, hLeft - (q >= 6 ? c : 0));
+                    if (c) { used[q] -= c; totalPts -= c * VALUES[q]; }
+                    if (budget.cut || found.length >= maxStored) return;
                 }
             }
-            rec(start + 1);
+
+            function emitBucket(h) {
+                used.fill(0);
+                totalPts = 0;
+                rec(MAX_LEVEL, h);
+            }
+
+            // Waste-0 range first: totals <= wasteFreeMax share the comparator's
+            // head (waste 0) and are walked bucket-by-bucket in rank order.
+            if (band.L <= wasteFreeMax) {
+                for (let h = 0; h <= sumHighInv && found.length < maxStored && !budget.cut; h++) {
+                    emitBucket(h);
+                }
+            }
+            // Anything past the +10 frontier wastes: walk exact totals
+            // ascending (waste = total - netNeed), bucket by bucket.
+            for (let t = Math.max(band.L, wasteFreeMax + 1);
+                 t <= band.U && found.length < maxStored && !budget.cut; t++) {
+                band.L = t; band.U = t;
+                for (let h = 0; h <= sumHighInv && found.length < maxStored && !budget.cut; h++) {
+                    emitBucket(h);
+                }
+            }
             return { found, budget };
         }
 
